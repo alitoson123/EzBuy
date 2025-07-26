@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "649199618610",
+    "project_id": "ezbuy-103d1",
+    "storage_bucket": "ezbuy-103d1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649199618610:android:18d80081d29e01c8b30a2b",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgA39dz-ZgErl8ZIhBhHLLdPHuG7jIvvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
