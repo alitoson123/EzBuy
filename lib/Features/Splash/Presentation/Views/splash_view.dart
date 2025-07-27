@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Core/navigate.dart';
+import 'package:e_commerce_app/Core/Navigate/navigate.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,7 +24,6 @@ class _SplashViewState extends State<SplashView>
   }
 
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffFCFDFC),
@@ -40,7 +39,6 @@ class _SplashViewState extends State<SplashView>
   void animationMethod() {
     controller =
         AnimationController(duration: Duration(seconds: 2), vsync: this);
-
     animation = Tween(begin: 1, end: 5).animate(controller);
   }
 
@@ -54,8 +52,8 @@ class _SplashViewState extends State<SplashView>
     );
   }
 
+  @override
   void dispose() {
-    // TODO: implement dispose
     controller.dispose();
     super.dispose();
   }

@@ -1,11 +1,9 @@
-import 'package:e_commerce_app/Core/navigate.dart';
+import 'package:e_commerce_app/Core/Services/Auth/auth.dart';
 import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/row_of_dont_have_an_account_and_sign_up.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:go_router/go_router.dart';
 
 class ForgetPasswordView extends StatefulWidget {
   const ForgetPasswordView({super.key});
@@ -60,26 +58,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                     if (myKey.currentState!.validate()) {
                       myKey.currentState!.save();
 
-                      try {
-                        final credential = await FirebaseAuth.instance
-                            .sendPasswordResetEmail(email: email!);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                                'Password Reset Email Sent Successfully, please check your email and login with your new password.'),
-                          ),
-                        );
-                        GoRouter.of(context).pop();
-                      } on FirebaseAuthException catch (e) {
-                        return showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              content: Text(e.message.toString()),
-                            );
-                          },
-                        );
-                      }
+                      await Auth().ForgetPasswordMethod(context, email: email!);
                     }
                   },
                 ),

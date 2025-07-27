@@ -1,7 +1,7 @@
-import 'package:e_commerce_app/Core/navigate.dart';
-import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
+import 'package:e_commerce_app/Core/Navigate/navigate.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
+import 'package:e_commerce_app/Features/Sign_up/Presentation/Views/widgets/complete_sign_up_text_field.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +15,7 @@ class CompleteSignUpView extends StatefulWidget {
 
 class _CompleteSignUpViewState extends State<CompleteSignUpView> {
   final GlobalKey<FormState> myKey = GlobalKey();
-  String? fistname;
+  String? fisrtname;
   String? lastname;
   int? phonenumber;
   String? address;
@@ -43,45 +43,12 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
                   subtitle:
                       'Complete your details or continue \n with social media',
                 ), // shift alt a
-                SizedBox(height: 40),
-                MyTextField(
-                  myTextLabel: 'First Name',
-                  myHintText: 'Enter your first name',
-                  myIcon: Icon(Icons.person),
-                  onChanged: (value) {
-                    fistname = value;
-                  },
-                ),
-                SizedBox(height: 30),
-                MyTextField(
-                  myTextLabel: 'Last Name',
-                  myHintText: 'Enter your last name',
-                  myIcon: Icon(Icons.person),
-                  onChanged: (value) {
-                    lastname = value;
-                  },
-                ),
-                SizedBox(height: 30),
-                MyTextField(
-                  myTextLabel: 'Phone Number',
-                  myHintText: 'Enter your phone number',
-                  myIcon: Icon(Icons.mobile_friendly),
-                  onChanged: (value) {
-                    phonenumber = int.parse(value);
-                  },
-                ),
-                SizedBox(height: 30),
-                MyTextField(
-                  myTextLabel: 'Address',
-                  myHintText: 'Enter your address',
-                  myIcon: Icon(Icons.location_on_outlined),
-                  onChanged: (value) {
-                    address = value;
-                  },
-                ),
-                SizedBox(
-                  height: 30,
-                ),
+
+                CompleteSignUpTextField(
+                    firstname: fisrtname!,
+                    lastname: lastname!,
+                    phonenumber: phonenumber!,
+                    address: address!),
                 MyelevatedButton(onPressed: () {
                   if (myKey.currentState!.validate()) {
                     myKey.currentState!.save();
@@ -107,5 +74,4 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
       ),
     );
   }
-  
 }

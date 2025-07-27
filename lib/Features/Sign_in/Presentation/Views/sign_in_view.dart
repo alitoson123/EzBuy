@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Core/navigate.dart';
+import 'package:e_commerce_app/Core/Services/Auth/auth.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/row_of_check_box_and_text_button.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/row_of_dont_have_an_account_and_sign_up.dart';
@@ -6,9 +6,7 @@ import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/row_o
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/text_fields_of_email_and_password.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
@@ -70,46 +68,17 @@ class _SignInViewState extends State<SignInView> {
                 SizedBox(
                   height: 20,
                 ),
-                MyelevatedButton(onPressed: () async {
-                  if (myKey.currentState!.validate()) {
-                    myKey.currentState!.save();
-                    try {
-                      final credential = await FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                        email: email!,
-                        password: Password!,
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Sign in successfully'),
-                        ),
-                      );
-
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      if (isSelected) {
-                        await prefs.setBool('isRemembered', true);
-                      }
-
-                      GoRouter.of(context).go(Navigate.KHomePage);
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'user-not-found') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('No user found for that email.'),
-                          ),
-                        );
-                      } else if (e.code == 'wrong-password') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content:
-                                Text('Wrong password provided for that user.'),
-                          ),
-                        );
-                      }
+                MyelevatedButton(
+                  onPressed: () async {
+                    if (myKey.currentState!.validate()) {
+                      myKey.currentState!.save();
+                      await Auth().SignInAndIsLoginCheck(context,
+                          email: email!,
+                          password: Password!,
+                          isSelected: isSelected);
                     }
-                  }
-                }),
+                  },
+                ),
                 SizedBox(
                   height: 40,
                 ),

@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Core/navigate.dart';
+import 'package:e_commerce_app/Core/Navigate/navigate.dart';
 import 'package:e_commerce_app/Core/widgets/my_text_button.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/my_check_box_list_tile.dart';
 import 'package:flutter/material.dart';

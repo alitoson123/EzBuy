@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Core/navigate.dart';
+import 'package:e_commerce_app/Core/Services/Auth/auth.dart';
 import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/row_of_social_media_logos.dart';
@@ -6,8 +6,6 @@ import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/text_
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -70,40 +68,10 @@ class _SignUpViewState extends State<SignUpView> {
                   onPressed: () async {
                     if (myKey.currentState!.validate()) {
                       myKey.currentState!.save();
-                      if (Password == confirmPassword) {
-                        try {
-                          final credential = await FirebaseAuth.instance
-                              .createUserWithEmailAndPassword(
-                            email: email!,
-                            password: Password!,
-                          );
-
-                          GoRouter.of(context).go(Navigate.KCompleteSignUpPage);
-                        } on FirebaseAuthException catch (e) {
-                          if (e.code == 'weak-password') {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content:
-                                    Text('The password provided is too weak.'),
-                              ),
-                            );
-                          } else if (e.code == 'email-already-in-use') {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('The account already exists.'),
-                              ),
-                            );
-                          }
-                        } catch (e) {
-                          print(e);
-                        }
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Password does not match'),
-                          ),
-                        );
-                      }
+                      await Auth().SignUpMethod(context,
+                          email: email!,
+                          password: Password!,
+                          confirmPassword: confirmPassword!);
                     }
                   },
                 ),
