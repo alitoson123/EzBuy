@@ -8,20 +8,20 @@ import 'package:e_commerce_app/Features/Splash/Presentation/Views/splash_view.da
 import 'package:go_router/go_router.dart';
 
 class Navigate {
-  static String KinitialPage = '/';
+ // static String KinitialPage = '/';
   static String KOnBoardingPage = '/OnBoarding';
   static String KSignInPage = '/SignInPage';
   static String KForgetPasswordPage = '/ForgetPassword';
   static String KSignUpPage = '/SignUp';
   static String KCompleteSignUpPage = '/CompleteSignUp';
-  static String KHomePage = '/Home';
+  static String KHomePage = '/';
 
   final GoRouter goRouter = GoRouter(
     routes: [
-      GoRoute(
+    /*  GoRoute(
         path: KinitialPage,
         builder: (context, state) => SplashView(),
-      ),
+      ),*/
       GoRoute(
         path: KOnBoardingPage,
         builder: (context, state) => OnBoardingView(),

@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/my_circle_avatar.dart';
+import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/text_field_for_home.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -6,10 +8,26 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Opacity(opacity: .5, child: Text('Home page')),
-        backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16),
+          child: Row(
+            children: [
+              // Expanded Search Field
+              Expanded(child: TextFieldForHome()),
+              SizedBox(width: 10),
+
+              MyCircleAvatar(
+                icon: Icons.shopping_cart_outlined,
+              ),
+              SizedBox(width: 12),
+
+              MyCircleAvatar(
+                icon: Icons.notifications_none,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
