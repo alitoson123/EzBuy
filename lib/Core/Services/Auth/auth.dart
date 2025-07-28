@@ -17,7 +17,7 @@ class Auth {
         email: email,
         password: password,
       );
-      Message().MessageMethod(
+      Message().MessageSuccessMethod(
         context,
         message: 'Sign in successfully',
       );
@@ -27,12 +27,12 @@ class Auth {
       GoRouter.of(context).go(Navigate.KHomePage);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        Message().MessageMethod(
+        Message().MessageErrorMethod(
           context,
           message: 'No user found for that email.',
         );
       } else if (e.code == 'wrong-password') {
-        Message().MessageMethod(
+        Message().MessageErrorMethod(
           context,
           message: 'Wrong password provided for that user.',
         );
@@ -64,17 +64,17 @@ class Auth {
         GoRouter.of(context).go(Navigate.KCompleteSignUpPage);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
-          Message().MessageMethod(context,
+          Message().MessageErrorMethod(context,
               message: 'The password provided is too weak.');
         } else if (e.code == 'email-already-in-use') {
-          Message()
-              .MessageMethod(context, message: 'The account already exists.');
+          Message().MessageErrorMethod(context,
+              message: 'The account already exists.');
         }
       } catch (e) {
         print(e);
       }
     } else {
-      Message().MessageMethod(context, message: 'Password does not match');
+      Message().MessageErrorMethod(context, message: 'Password does not match');
     }
   }
 
@@ -85,13 +85,14 @@ class Auth {
     try {
       final credential =
           await FirebaseAuth.instance.sendPasswordResetEmail(email: email!);
-      Message().MessageMethod(context,
+      Message().MessageErrorMethod(context,
           message:
               'Password Reset Email Sent Successfully, please check your email and login with your new password.');
 
       GoRouter.of(context).pop();
     } on FirebaseAuthException catch (e) {
-      return Message().MessageMethod(context, message: e.message.toString());
+      return Message()
+          .MessageErrorMethod(context, message: e.message.toString());
     }
   }
 
@@ -100,21 +101,13 @@ class Auth {
   ) async {
     try {
       final userCred = await signInWithGoogle();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Google sign-in successfully'),
-        ),
-      );
+
+      Message().MessageSuccessMethod(context,
+          message: 'Google sign-in successfully');
       GoRouter.of(context).push(Navigate.KHomePage);
     } on FirebaseAuthException catch (e) {
-      return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text(e.message.toString()),
-          );
-        },
-      );
+      return Message()
+          .MessageErrorMethod(context, message: e.message.toString());
     }
   }
 
@@ -141,33 +134,25 @@ class Auth {
   ) async {
     try {
       final userCred = await signInWithFacebook();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Facebook sign-in successfully'),
-        ),
-      );
+
+      Message().MessageSuccessMethod(context,
+          message: 'Facebook sign-in successfully');
       GoRouter.of(context).push(Navigate.KHomePage);
     } on FirebaseAuthException catch (e) {
-      return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text(e.message.toString()),
-          );
-        },
-      );
+      return Message()
+          .MessageErrorMethod(context, message: e.message.toString());
     }
   }
 
   Future<UserCredential> signInWithFacebook() async {
-  // Trigger the sign-in flow
-  final LoginResult loginResult = await FacebookAuth.instance.login();
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
 
-  // Create a credential from the access token
-  final OAuthCredential facebookAuthCredential =
-      FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
-  // Once signed in, return the UserCredential
-  return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-}
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  }
 }

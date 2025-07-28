@@ -2,21 +2,19 @@ import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
 
 class CompleteSignUpTextField extends StatefulWidget {
-  CompleteSignUpTextField(
-      {super.key,
-      required this.firstname,
-      required this.lastname,
-      required this.phonenumber,
-      required this.address});
-  String firstname;
-  String lastname;
-  int phonenumber;
-  String address;
+  const CompleteSignUpTextField({
+    super.key,
+  });
 
   @override
   State<CompleteSignUpTextField> createState() =>
       _CompleteSignUpTextFieldState();
 }
+
+String firstname = '';
+String lastname = '';
+int phonenumber = 0;
+String address = '';
 
 class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
   @override
@@ -29,7 +27,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
           myHintText: 'Enter your first name',
           myIcon: Icon(Icons.person),
           onChanged: (value) {
-            widget.firstname = value;
+            firstname = value;
           },
         ),
         SizedBox(height: 30),
@@ -38,7 +36,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
           myHintText: 'Enter your last name',
           myIcon: Icon(Icons.person),
           onChanged: (value) {
-            widget.lastname = value;
+            lastname = value;
           },
         ),
         SizedBox(height: 30),
@@ -47,7 +45,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
           myHintText: 'Enter your phone number',
           myIcon: Icon(Icons.mobile_friendly),
           onChanged: (value) {
-            widget.phonenumber = int.parse(value);
+            phonenumber = int.parse(value);
           },
         ),
         SizedBox(height: 30),
@@ -56,7 +54,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
           myHintText: 'Enter your address',
           myIcon: Icon(Icons.location_on_outlined),
           onChanged: (value) {
-            widget.address = value;
+            address = value;
           },
         ),
         SizedBox(

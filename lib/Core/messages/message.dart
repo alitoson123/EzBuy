@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Message {
-  void MessageMethod(BuildContext context, {required String message}) {
+  void MessageErrorMethod(BuildContext context, {required String message}) {
     showDialog(
       context: context,
       builder: (context) {
@@ -10,5 +10,10 @@ class Message {
         );
       },
     );
+  }
+
+  void MessageSuccessMethod(BuildContext context, {required String message}) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
+import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
 import 'package:e_commerce_app/Features/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/Features/Sign_up/Presentation/Views/widgets/complete_sign_up_text_field.dart';
@@ -15,10 +16,7 @@ class CompleteSignUpView extends StatefulWidget {
 
 class _CompleteSignUpViewState extends State<CompleteSignUpView> {
   final GlobalKey<FormState> myKey = GlobalKey();
-  String? fisrtname;
-  String? lastname;
-  int? phonenumber;
-  String? address;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -44,14 +42,12 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
                       'Complete your details or continue \n with social media',
                 ), // shift alt a
 
-                CompleteSignUpTextField(
-                    firstname: fisrtname!,
-                    lastname: lastname!,
-                    phonenumber: phonenumber!,
-                    address: address!),
+                CompleteSignUpTextField(),
                 MyelevatedButton(onPressed: () {
                   if (myKey.currentState!.validate()) {
                     myKey.currentState!.save();
+                    Message().MessageSuccessMethod(context,
+                        message: 'Sign up successfully.');
                     GoRouter.of(context).push(Navigate.KHomePage);
                   }
                 }),
