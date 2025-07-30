@@ -1,0 +1,34 @@
+import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/app_bar_for_home.dart';
+import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/container_offer.dart';
+import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/list_view_of_categories.dart';
+import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/list_view_of_products.dart';
+import 'package:e_commerce_app/constant.dart';
+import 'package:flutter/material.dart';
+
+class HomeBody extends StatelessWidget {
+  const HomeBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppBarForHome(),
+            SizedBox(height: 20),
+            ContainerOffer(),
+            SizedBox(height: 20),
+            Text(
+              'Category',
+              style: Style().textStyle20,
+            ),
+            ListViewOfCategories(),
+            ListViewOfProducts(),
+          ],
+        ),
+      ),
+    );
+  }
+}
