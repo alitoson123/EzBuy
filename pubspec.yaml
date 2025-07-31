@@ -45,6 +45,7 @@ dependencies:
  # twitter_login: ^4.4.2
   shared_preferences: ^2.5.3
   flutter_facebook_auth: ^7.1.2
+  readmore: ^3.0.0
   #flutter_facebook_auth: ^6.1.1
 
 
