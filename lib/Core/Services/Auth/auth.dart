@@ -49,6 +49,7 @@ class Auth {
 
   Future<void> SignUpMethod(
     BuildContext context, {
+    required bool isSelected,
     required String email,
     required String password,
     required String confirmPassword,
@@ -61,7 +62,9 @@ class Auth {
           password: password,
         );
 
-        GoRouter.of(context).go(Navigate.KCompleteSignUpPage);
+        await IsLoginCheck(isSelected: isSelected);
+
+        GoRouter.of(context).push(Navigate.KCompleteSignUpPage);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           Message().MessageErrorMethod(context,
@@ -84,7 +87,7 @@ class Auth {
   }) async {
     try {
       final credential =
-          await FirebaseAuth.instance.sendPasswordResetEmail(email: email!);
+          await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       Message().MessageErrorMethod(context,
           message:
               'Password Reset Email Sent Successfully, please check your email and login with your new password.');
@@ -97,14 +100,18 @@ class Auth {
   }
 
   Future<void> SignInWithGoogleMethod(
-    BuildContext context,
-  ) async {
+    BuildContext context, {
+    required bool isSelected,
+  }) async {
     try {
       final userCred = await signInWithGoogle();
 
       Message().MessageSuccessMethod(context,
           message: 'Google sign-in successfully');
-      GoRouter.of(context).push(Navigate.KHomePage);
+
+      await IsLoginCheck(isSelected: isSelected);
+
+      GoRouter.of(context).go(Navigate.KHomePage);
     } on FirebaseAuthException catch (e) {
       return Message()
           .MessageErrorMethod(context, message: e.message.toString());
@@ -130,14 +137,18 @@ class Auth {
   }
 
   Future<void> SignInWithFacebookMethod(
-    BuildContext context,
-  ) async {
+    BuildContext context, {
+    required bool isSelected,
+  }) async {
     try {
       final userCred = await signInWithFacebook();
 
       Message().MessageSuccessMethod(context,
           message: 'Facebook sign-in successfully');
-      GoRouter.of(context).push(Navigate.KHomePage);
+
+      await IsLoginCheck(isSelected: isSelected);
+
+      GoRouter.of(context).go(Navigate.KHomePage);
     } on FirebaseAuthException catch (e) {
       return Message()
           .MessageErrorMethod(context, message: e.message.toString());

@@ -15,7 +15,7 @@ class RowOfSocialMediaLogos extends StatelessWidget {
           myWidth: 30,
           myheight: 30,
           onTap: () async {
-            Auth().SignInWithGoogleMethod(context);
+            Auth().SignInWithGoogleMethod(context, isSelected: true);
           },
         ),
         const SizedBox(width: 10),
@@ -24,7 +24,7 @@ class RowOfSocialMediaLogos extends StatelessWidget {
           myWidth: 40,
           myheight: 40,
           onTap: () async {
-            Auth().SignInWithFacebookMethod(context);
+            Auth().SignInWithFacebookMethod(context, isSelected: true);
           },
         ),
       ],

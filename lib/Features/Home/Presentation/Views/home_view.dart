@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/home_body.dart';
+import 'package:e_commerce_app/Features/Profile/Presentation/Views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -13,8 +14,8 @@ class _HomeViewState extends State<HomeView> {
   List<Widget> screens = [
     HomeBody(),
     Center(child: Text('Explore')),
-    Center(child: Text('Profile')),
     Center(child: Text('Settings')),
+    ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class _HomeViewState extends State<HomeView> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings_rounded), label: 'Settings')
+              icon: Icon(Icons.settings_rounded), label: 'Settings'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: selectedIndex,
         onTap: onTapMethod,

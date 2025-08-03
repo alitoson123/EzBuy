@@ -4,7 +4,6 @@ import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/m
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/onBboardingBody.dart';
 import 'package:flutter/material.dart';
 
-
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
   @override
@@ -14,9 +13,6 @@ class OnBoardingView extends StatefulWidget {
 class _OnBoardingViewState extends State<OnBoardingView> {
   int currentIndex = 0;
   final PageController pageController = PageController();
-
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +34,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             const SizedBox(height: 20),
             MyelevatedButton(
               onPressed: () {
-                helper().goToNextPageWithCheckLoginStatusMethod(
+                helper().goToNextPageMethod(
                   context: context,
                   currentIndex: currentIndex,
                   pageController: pageController,

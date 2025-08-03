@@ -71,7 +71,8 @@ class _SignUpViewState extends State<SignUpView> {
                       await Auth().SignUpMethod(context,
                           email: email!,
                           password: Password!,
-                          confirmPassword: confirmPassword!);
+                          confirmPassword: confirmPassword!,
+                          isSelected: true);
                     }
                   },
                 ),

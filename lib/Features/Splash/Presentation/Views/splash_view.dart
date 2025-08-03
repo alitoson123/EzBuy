@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -44,9 +45,16 @@ class _SplashViewState extends State<SplashView>
 
   void navigateMethod() {
     controller.addStatusListener(
-      (status) {
+      (status) async {
         if (status == AnimationStatus.completed) {
-          GoRouter.of(context).go(Navigate.KOnBoardingPage);
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          bool isRemembered = prefs.getBool('isRemembered') ?? false;
+
+          if (isRemembered) {
+            GoRouter.of(context).go(Navigate.KHomePage);
+          } else {
+            GoRouter.of(context).go(Navigate.KOnBoardingPage);
+          }
         }
       },
     );

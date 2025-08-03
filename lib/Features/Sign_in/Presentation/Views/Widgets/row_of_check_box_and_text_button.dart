@@ -20,7 +20,7 @@ class RowOfCheckBoxAndTextButton extends StatelessWidget {
         MyTextButton(
           myText: 'Forgot Password?',
           onPressed: () {
-            GoRouter.of(context).go(Navigate.KForgetPasswordPage);
+            GoRouter.of(context).push(Navigate.KForgetPasswordPage);
           },
         ),
       ],

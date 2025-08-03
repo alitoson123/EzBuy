@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ContainerOfProductImage extends StatelessWidget {
@@ -9,7 +8,7 @@ class ContainerOfProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-     width: double.infinity,
+      width: double.infinity,
       height: 250,
       decoration: BoxDecoration(
         color: Color(0xffEDEFF1),

@@ -5,7 +5,7 @@ const Color KPrimaryColor = Color(0xff1E88E5);
 class Style {
     TextStyle textStyle14 = TextStyle(fontSize: 14);
 
-  TextStyle textStyle16 = TextStyle(fontSize: 16, color: Colors.white);
+  TextStyle textStyle16 = TextStyle(fontSize: 16);
   TextStyle textStyle18 = TextStyle(fontSize: 18);
   TextStyle textStyle20 = TextStyle(
     fontSize: 20,

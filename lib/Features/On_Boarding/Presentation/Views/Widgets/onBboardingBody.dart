@@ -14,15 +14,15 @@ class Onbboardingbody extends StatefulWidget {
 class _OnbboardingbodyState extends State<Onbboardingbody> {
   final List<OnboardingModel> onboardingModelsList = [
     OnboardingModel(
-        description: 'Find amazing products at great prices \n all in one app',
+        description: 'Find amazing products at great prices \n all in one app.',
         image: 'assets/images/Online Groceries-cuate (1).svg'),
     OnboardingModel(
         description:
-            'Your orders arrive fast, safe, and always on time \n right to your doorstep.',
+            'Your orders arrive fast, safe, and always on time.',
         image: 'assets/images/In no time-pana (1).svg'),
     OnboardingModel(
         description:
-            'Pay with confidence \n secure options including cards, wallets, and cash on delivery.',
+            'Pay with confidence secure options including cards, wallets, and cash on delivery.',
         image: 'assets/images/E-Wallet-pana.svg'),
   ];
 

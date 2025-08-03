@@ -25,6 +25,7 @@ class MyTextField extends StatelessWidget {
         if (value!.isEmpty) {
           return 'Please Enter your $myTextLabel';
         }
+        return null;
       },
       decoration: InputDecoration(
         labelText: myTextLabel,

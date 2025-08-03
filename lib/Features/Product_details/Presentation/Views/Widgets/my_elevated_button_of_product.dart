@@ -11,13 +11,13 @@ class MyElevatedButtonOfProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {},
+      style: ElevatedButton.styleFrom(
+          backgroundColor: Color(0xff1E88E5),
+          minimumSize: Size(290, 47)),
       child: Text(
         'Add to Cart',
         style: Style().textStyle20.copyWith(color: Colors.white),
       ),
-      style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xff1E88E5),
-          minimumSize: Size(290, 47)),
     );
   }
 }

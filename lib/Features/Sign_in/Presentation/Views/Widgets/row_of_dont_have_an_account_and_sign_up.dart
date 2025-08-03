@@ -11,13 +11,10 @@ class RowOfDontHaveAnAccountAndSignUp extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          'Don\'t have an account? ',
-          style: Style().textStyle16,
-        ),
+        Text('Don\'t have an account? ', style: Style().textStyle16),
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).go(Navigate.KSignUpPage);
+            GoRouter.of(context).push(Navigate.KSignUpPage);
           },
           child: Text(
             'Sign Up',

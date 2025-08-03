@@ -7,17 +7,17 @@ class MyelevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
+        backgroundColor: Color(0xff1E88E5),
+        minimumSize: Size(350, 50),
+      ),
       child: Text(
         'Continue',
         style: TextStyle(
           color: Colors.white,
           fontSize: 16,
         ),
-      ),
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
-        backgroundColor: Color(0xff1E88E5),
-        minimumSize: Size(350, 50),
       ),
     );
   }

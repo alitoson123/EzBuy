@@ -18,7 +18,7 @@ class ContainerOffer extends StatelessWidget {
           children: [
             Text(
               'A Summer surprise',
-              style: Style().textStyle16,
+              style: Style().textStyle16.copyWith(color: Colors.white),
             ),
             Text(
               'Cashback 20%',
