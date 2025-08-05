@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MyelevatedButton extends StatelessWidget {
-  const MyelevatedButton({super.key,required this.onPressed});
+  const MyelevatedButton(
+      {super.key, required this.onPressed, this.text = 'Continue'});
   final Function() onPressed;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -13,7 +15,7 @@ class MyelevatedButton extends StatelessWidget {
         minimumSize: Size(350, 50),
       ),
       child: Text(
-        'Continue',
+        text,
         style: TextStyle(
           color: Colors.white,
           fontSize: 16,

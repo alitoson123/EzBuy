@@ -42,14 +42,14 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 SizedBox(
                   height: 70,
                 ),
-                MyTextField(
+              /*  MyTextField(
                   myTextLabel: 'Email',
                   myHintText: 'Enter your email',
                   myIcon: Icon(Icons.mail),
                   onChanged: (Value) {
                     email = Value;
                   },
-                ),
+                ),*/
                 SizedBox(
                   height: 110,
                 ),

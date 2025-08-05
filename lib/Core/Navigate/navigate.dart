@@ -7,6 +7,7 @@ import 'package:e_commerce_app/Features/Sign_In/Presentation/Views/sign_in_view.
 import 'package:e_commerce_app/Features/Sign_up/Presentation/Views/complete_sign_up_view.dart';
 import 'package:e_commerce_app/Features/Sign_up/Presentation/Views/sign_up_view.dart';
 import 'package:e_commerce_app/Features/Splash/Presentation/Views/splash_view.dart';
+import 'package:e_commerce_app/Features/my_account/Presentation/Views/my_account.dart';
 import 'package:go_router/go_router.dart';
 
 class Navigate {
@@ -16,9 +17,10 @@ class Navigate {
   static String KForgetPasswordPage = '/ForgetPassword';
   static String KSignUpPage = '/SignUp';
   static String KCompleteSignUpPage = '/CompleteSignUp';
-  static String KHomePage = '/Home';
+  static String KHomePage = '/';
   static String KProductDetailsPage = '/ProductDetails';
-  static String KProfilePage = '/';
+  static String KProfilePage = '/Profile';
+  static String KMyAccountPage = '/MyAccount';
 
   final GoRouter goRouter = GoRouter(
     routes: [
@@ -54,9 +56,13 @@ class Navigate {
         path: KProductDetailsPage,
         builder: (context, state) => ProductDetailsView(),
       ),
-       GoRoute(
+      GoRoute(
         path: KProfilePage,
         builder: (context, state) => ProfileView(),
+      ),
+      GoRoute(
+        path: KMyAccountPage,
+        builder: (context, state) => MyAccount(),
       ),
     ],
   );

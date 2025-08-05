@@ -12,7 +12,7 @@ class ListTileOfProfile extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 16),
       child: ListTile(
         minTileHeight: 70,
-        onTap: () {},
+        onTap: () => profilemodelObject.onTap(context),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),

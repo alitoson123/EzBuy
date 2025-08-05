@@ -13,7 +13,7 @@ class TextFieldsOfEmailAndPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MyTextField(
+      /*  MyTextField(
           onChanged: onChangedForEmail,
           myTextLabel: 'Email',
           myHintText: 'Enter your email',
@@ -25,7 +25,7 @@ class TextFieldsOfEmailAndPassword extends StatelessWidget {
           myTextLabel: 'Password',
           myHintText: 'Enter your password',
           myIcon: Icon(Icons.lock),
-        ),
+        ),*/
       ],
     );
   }

@@ -1,39 +1,37 @@
+import 'package:e_commerce_app/Features/Sign_up/Data/Models/sign_up_model.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
-  const MyTextField(
-      {super.key,
-      required this.myTextLabel,
-      required this.myHintText,
-      required this.myIcon,
-      required this.onChanged});
-  final String myTextLabel;
-  final String myHintText;
-  final Icon myIcon;
-  final void Function(String) onChanged;
+  const MyTextField({
+    super.key,
+    required this.SignUpModelObject, this.initialValue,
+  });
+  final SignUpModel SignUpModelObject;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText:
-          myTextLabel == 'Password' || myTextLabel == 'Confirm Password'
-              ? true
-              : false,
-      onChanged: onChanged,
+       initialValue: initialValue,
+      obscureText: SignUpModelObject.myTextLabel == 'Password' ||
+              SignUpModelObject.myTextLabel == 'Confirm Password'
+          ? true
+          : false,
+      onChanged: SignUpModelObject.onChanged,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please Enter your $myTextLabel';
+          return 'Please Enter your ${SignUpModelObject.myTextLabel}';
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: myTextLabel,
+        labelText: SignUpModelObject.myTextLabel,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         floatingLabelStyle: TextStyle(color: KPrimaryColor),
         contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 18),
-        suffixIcon: myIcon,
-        hintText: myHintText,
+        suffixIcon: SignUpModelObject.myIcon,
+        hintText: SignUpModelObject.myHintText,
         focusedBorder: focusOutLineInputBorder(),
         border: borderOutLineInputBorder(),
       ),

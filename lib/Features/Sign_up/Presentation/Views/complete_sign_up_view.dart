@@ -7,6 +7,7 @@ import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+
 class CompleteSignUpView extends StatefulWidget {
   const CompleteSignUpView({super.key});
 

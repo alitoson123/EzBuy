@@ -53,14 +53,14 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                 ),
                 SizedBox(height: 30),
-                MyTextField(
+             /*  MyTextField(
                   myTextLabel: 'Confirm Password',
                   myHintText: 'Re-enter your password',
                   myIcon: Icon(Icons.lock),
                   onChanged: (value) {
                     confirmPassword = value;
                   },
-                ),
+                ),*/
                 SizedBox(
                   height: 40,
                 ),
