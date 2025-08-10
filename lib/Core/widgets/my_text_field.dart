@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Features/Sign_up/Data/Models/sign_up_model.dart';
+import 'package:e_commerce_app/Features/Auth/Sign_up/Data/Models/sign_up_model.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 

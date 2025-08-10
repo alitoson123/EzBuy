@@ -1,14 +1,19 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
+import 'package:e_commerce_app/Core/Services/Bloc_observes/my_Bloc_observe.dart';
+import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setup();
+  Bloc.observer = MyBlocObserver();
   runApp(const EzBuy());
 }
 
@@ -20,6 +25,7 @@ class EzBuy extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: KPrimaryColor),
         primaryColor: KPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(

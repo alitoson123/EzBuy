@@ -47,6 +47,11 @@ dependencies:
   flutter_facebook_auth: ^7.1.2
   readmore: ^3.0.0
   cloud_firestore: ^5.6.12
+  flutter_launcher_icons: ^0.14.4
+  dartz: ^0.10.1
+  flutter_bloc: ^9.1.1
+  get_it: ^8.2.0
+  modal_progress_hud_nsn: ^0.5.1
   #flutter_facebook_auth: ^6.1.1
 
 
@@ -103,3 +108,15 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Icon/ChatGPT_Image_Aug_7__2025__04_50_37_PM-removebg-preview.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+flutter_assets:
+  assets_path: assets/images/
+  output_path: lib/Core/Utils
+  filename: assets.dart
+
+
+

@@ -1,90 +1,109 @@
-import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
-import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
-import 'package:e_commerce_app/Features/Sign_up/Presentation/Views/widgets/complete_sign_up_text_field.dart';
-import 'package:e_commerce_app/constant.dart';
+import 'package:e_commerce_app/Features/Auth/Sign_up/Data/Models/sign_up_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
+import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
 
-class MyAccount extends StatelessWidget {
+class MyAccount extends StatefulWidget {
   const MyAccount({super.key});
 
   @override
+  State<MyAccount> createState() => _MyAccountState();
+}
+
+class _MyAccountState extends State<MyAccount> {
+  late List<SignUpModel> signUpModelList;
+
+  @override
+  void initState() {
+    super.initState();
+    signUpModelList = [
+      SignUpModel(
+        myTextLabel: 'First Name',
+        myHintText: 'Enter your first name',
+        myIcon: const Icon(Icons.person),
+      ),
+      SignUpModel(
+        myTextLabel: 'Last Name',
+        myHintText: 'Enter your last name',
+        myIcon: const Icon(Icons.person),
+      ),
+      SignUpModel(
+        myTextLabel: 'Phone Number',
+        myHintText: 'Enter your phone number',
+        myIcon: const Icon(Icons.mobile_friendly),
+      ),
+      SignUpModel(
+        myTextLabel: 'Address',
+        myHintText: 'Enter your address',
+        myIcon: const Icon(Icons.location_on_outlined),
+      ),
+    ];
+  }
+
+  @override
   Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    final currentUser = FirebaseAuth.instance.currentUser;
+    final CollectionReference users =
+        FirebaseFirestore.instance.collection('users');
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Opacity(opacity: .5, child: Text('My Account')),
+        title: const Opacity(opacity: .5, child: Text('My Account')),
         backgroundColor: Colors.white,
       ),
-      body: FutureBuilder<DocumentSnapshot>(
-        future: users.doc('bsEL1XsnrqEzDDn3v9zh').get(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Text("Something went wrong");
-          }
+      body: currentUser == null
+          ? const Center(child: Text("User not signed in"))
+          : FutureBuilder<DocumentSnapshot>(
+              future: users.doc(currentUser.uid).get(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Center(child: Text("Something went wrong"));
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                      child: CircularProgressIndicator(color: Colors.blue));
+                }
+                if (!snapshot.hasData || !snapshot.data!.exists) {
+                  return const Center(child: Text("Document does not exist"));
+                }
 
-          if (snapshot.hasData && !snapshot.data!.exists) {
-            return Text("Document does not exist");
-          }
-          if (snapshot.hasData) {
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: SignUpModelList.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: MyTextField(
-                            initialValue: snapshot
-                                .data![SignUpModelList[index].myTextLabel]
-                                .toString(),
-                            SignUpModelObject: SignUpModelList[index],
-                          ),
-                        );
-                      },
-                    ),
+                final userData = snapshot.data!.data() as Map<String, dynamic>;
+
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: signUpModelList.length,
+                          itemBuilder: (context, index) {
+                            final label = signUpModelList[index].myTextLabel;
+                            final fieldValue = userData[label] ?? '';
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: MyTextField(
+                                initialValue: fieldValue.toString(),
+                                SignUpModelObject: signUpModelList[index],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      MyelevatedButton(
+                        text: 'Update',
+                        onPressed: () {
+                          // TODO: Implement update logic
+                        },
+                      ),
+                    ],
                   ),
-
-                  /* TextFormField(
-                    initialValue: snapshot.data!['First Name'],
-                    decoration: InputDecoration(
-                      //    labelText: myTextLabel,
-                      floatingLabelBehavior: FloatingLabelBehavior.auto,
-                      floatingLabelStyle: TextStyle(color: KPrimaryColor),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 18),
-                      //   suffixIcon: myIcon,
-                      //   hintText: myHintText,
-                      focusedBorder: focusOutLineInputBorder(),
-                      border: borderOutLineInputBorder(),
-                    ),
-                  ),*/
-                  MyelevatedButton(text: 'Update', onPressed: () {}),
-                ],
-              ),
-            );
-          }
-          return Text("loading");
-        },
-      ),
-    );
-  }
-
-  OutlineInputBorder borderOutLineInputBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20),
-    );
-  }
-
-  OutlineInputBorder focusOutLineInputBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20),
-      borderSide: BorderSide(color: Colors.black),
+                );
+              },
+            ),
     );
   }
 }
