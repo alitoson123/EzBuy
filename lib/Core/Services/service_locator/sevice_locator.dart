@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth.dart';
+import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 

@@ -70,18 +70,12 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 onPressed: () async {
                   if (myKey.currentState!.validate()) {
                     myKey.currentState!.save();
-              
+
                     BlocProvider.of<SignInCubit>(context)
-                        .SignInWithEmailAndPasswordMethod(context,
+                        .signInWithEmailAndPasswordMethod(context,
                             email: email!,
                             password: Password!,
                             isSelected: isSelected);
-              
-                    /*    await Auth().SignInWithEmailAndPAsswordAndIsLoginCheck(
-                                                               context,
-                                                               email: email!,
-                                                               password: Password!,
-                                                               isSelected: isSelected);*/
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;

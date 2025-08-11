@@ -10,15 +10,15 @@ abstract class AuthRepo {
     required bool isSelected,
   });
 
-  Future<Either<Failure, UserEntity>>  signup(
+  Future<Either<Failure, UserEntity>> signup(
     context, {
-     required String email,
+    required String email,
     required String password,
     required bool isSelected,
   });
-  Future<UserEntity> forgetPassword({
+  Future<Either<Failure, UserEntity>> forgetPassword({
     required String email,
   });
-  Future<UserEntity> signInWithGoogle();
-  Future<UserEntity> signInWithFacebook();
+  Future<Either<Failure, UserEntity>> signInWithGoogle();
+ Future<Either<Failure, UserEntity>> signInWithFacebook();
 }

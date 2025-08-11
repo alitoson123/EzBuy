@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth.dart';
+import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/row_of_dont_have_an_account_and_sign_up.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
