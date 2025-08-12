@@ -11,7 +11,7 @@ import 'package:e_commerce_app/Features/my_account/Presentation/Views/my_account
 import 'package:go_router/go_router.dart';
 
 class Navigate {
-  //static String KinitialPage = '/';
+  static String KinitialPage = '/';
   static String KOnBoardingPage = '/';
   static String KSignInPage = '/SignInPage';
   static String KForgetPasswordPage = '/ForgetPassword';
@@ -24,10 +24,10 @@ class Navigate {
 
   final GoRouter goRouter = GoRouter(
     routes: [
-       /* GoRoute(
+        GoRoute(
         path: KinitialPage,
         builder: (context, state) => SplashView(),
-      ),*/
+      ),
       GoRoute(
         path: KOnBoardingPage,
         builder: (context, state) => OnBoardingView(),

@@ -7,7 +7,7 @@ import 'package:e_commerce_app/Features/Auth/Domain/Repos/auth_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepo {
-  @override
+  
   final Auth authObject;
 
   AuthRepoImpl({required this.authObject});
