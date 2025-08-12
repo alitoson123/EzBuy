@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 class MyTextField extends StatelessWidget {
   const MyTextField({
     super.key,
-    required this.SignUpModelObject, this.initialValue,
+    required this.SignUpModelObject,
+    this.initialValue,
   });
   final SignUpModel SignUpModelObject;
   final String? initialValue;
@@ -13,7 +14,8 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-       initialValue: initialValue,
+      keyboardType: SignUpModelObject.keyboardType,
+      initialValue: initialValue,
       obscureText: SignUpModelObject.myTextLabel == 'Password' ||
               SignUpModelObject.myTextLabel == 'Confirm Password'
           ? true

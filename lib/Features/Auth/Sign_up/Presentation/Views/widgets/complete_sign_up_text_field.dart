@@ -1,8 +1,7 @@
-import 'package:e_commerce_app/Core/Models/UserModel.dart';
+import 'package:e_commerce_app/Core/Models/data_model.dart';
 import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Data/Models/sign_up_model.dart';
 import 'package:flutter/material.dart';
-
 
 class CompleteSignUpTextField extends StatefulWidget {
   const CompleteSignUpTextField({
@@ -15,20 +14,17 @@ class CompleteSignUpTextField extends StatefulWidget {
 }
 
 class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
-  late UserModel userModelObject;
+  late DataModel userModelObject;
   late List<SignUpModel> SignUpModelList;
 
   @override
   void initState() {
     super.initState();
-    userModelObject = UserModel(
-        Fname: '',
-        Lname: '',
-        PhoneNumber: 0,
-        Address: '',
-        userId: ''); // ✅ Initialize
+    userModelObject = DataModel(
+        Fname: '', Lname: '', PhoneNumber: 0, Address: '', userId: '');
     SignUpModelList = [
       SignUpModel(
+        keyboardType: TextInputType.name,
         myTextLabel: 'First Name',
         myHintText: 'Enter your first name',
         myIcon: Icon(Icons.person),
@@ -37,6 +33,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         },
       ),
       SignUpModel(
+        keyboardType: TextInputType.name,
         myTextLabel: 'Last Name',
         myHintText: 'Enter your last name',
         myIcon: Icon(Icons.person),
@@ -45,6 +42,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         },
       ),
       SignUpModel(
+        keyboardType: TextInputType.phone,
         myTextLabel: 'Phone Number',
         myHintText: 'Enter your phone number',
         myIcon: Icon(Icons.mobile_friendly),
@@ -53,6 +51,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         },
       ),
       SignUpModel(
+        keyboardType: TextInputType.streetAddress,
         myTextLabel: 'Address',
         myHintText: 'Enter your address',
         myIcon: Icon(Icons.location_on_outlined),
@@ -62,8 +61,6 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
       )
     ];
   }
-
-
 
   Widget build(BuildContext context) {
     return ListView.builder(

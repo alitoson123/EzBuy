@@ -1,7 +1,5 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
-import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
-import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/sign_in_view_body.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/view_model/sign_in_cubit/sign_in_cubit.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/view_model/sign_in_cubit/sign_in_states.dart';
@@ -15,14 +13,9 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignInCubit(
-        getIt<AuthRepoImpl>()
-      ),
-      child: Scaffold(
-        appBar: AppBarMethod(),
-        body: BloconsumerOfSignInBody(),
-      ),
+    return Scaffold(
+      appBar: AppBarMethod(),
+      body: BloconsumerOfSignInBody(),
     );
   }
 

@@ -5,9 +5,10 @@ class SignUpModel {
   final String myHintText;
   final Icon myIcon;
   void Function(String)? onChanged;
+  final TextInputType? keyboardType;
 
-  SignUpModel(
-      {required this.myTextLabel,
+  SignUpModel({this.keyboardType,
+      required this.myTextLabel,
       required this.myHintText,
       required this.myIcon,
       this.onChanged});

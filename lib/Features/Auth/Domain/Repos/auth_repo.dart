@@ -16,7 +16,7 @@ abstract class AuthRepo {
     required String password,
     required bool isSelected,
   });
-  Future<Either<Failure, UserEntity>> forgetPassword({
+  Future<Either<Failure, void>> forgetPassword({
     required String email,
   });
   Future<Either<Failure, UserEntity>> signInWithGoogle();

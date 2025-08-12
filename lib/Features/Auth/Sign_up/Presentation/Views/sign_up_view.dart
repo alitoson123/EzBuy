@@ -2,7 +2,6 @@ import 'package:e_commerce_app/Core/Navigate/navigate.dart';
 import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
-import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/sign_in_view_body.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/widgets/sign_up_view_body.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/view_model/Sign_up_cubit/sign_up_cubit.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/view_model/Sign_up_cubit/sign_up_states.dart';
@@ -53,7 +52,7 @@ class BlocConsumerOfSignUpViewBody extends StatelessWidget {
         }
         if (state is SignUpSuccessState) {
           Message()
-              .MessageSuccessMethod(context, message: 'Sign up successfully.');
+              .MessageSuccessMethod(context, message: 'Please complete your profile.');
           GoRouter.of(context).push(Navigate.KCompleteSignUpPage);
         }
       },

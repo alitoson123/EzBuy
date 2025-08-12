@@ -1,11 +1,11 @@
-class UserModel {
-   String Fname;
-   String Lname;
-   int PhoneNumber;
-   String Address;
-   String userId;
+class DataModel {
+  String Fname;
+  String Lname;
+  int PhoneNumber;
+  String Address;
+  String userId;
 
-  UserModel(
+  DataModel(
       {required this.Fname,
       required this.Lname,
       required this.PhoneNumber,

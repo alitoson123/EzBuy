@@ -13,24 +13,23 @@ class AuthRepoImpl extends AuthRepo {
   AuthRepoImpl({required this.authObject});
   @override
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
-      context, {
-  required String email,
-  required String password,
-  required bool isSelected,
-}) async {
-  try {
-    final user = await authObject.signInWithEmailAndPasswordAndIsLoginCheck(
-      email: email,
-      password: password,
-      isSelected: isSelected,
-    );
-    return right(UserModel.fromFirebaseUser(user));
-  } catch (e) {
-    final errorMessage = e.toString().replaceFirst('Exception: ', '');
-    return left(Failure(errMessage: errorMessage));
+    context, {
+    required String email,
+    required String password,
+    required bool isSelected,
+  }) async {
+    try {
+      final user = await authObject.signInWithEmailAndPasswordAndIsLoginCheck(
+        email: email,
+        password: password,
+        isSelected: isSelected,
+      );
+      return right(UserModel.fromFirebaseUser(user));
+    } catch (e) {
+      final errorMessage = e.toString().replaceFirst('Exception: ', '');
+      return left(Failure(errMessage: errorMessage));
+    }
   }
-}
-
 
   @override
   Future<Either<Failure, UserEntity>> signup(context,
@@ -38,20 +37,24 @@ class AuthRepoImpl extends AuthRepo {
       required String password,
       required bool isSelected}) async {
     try {
-      var user = await authObject.SignUpMethod(context,
-          isSelected: isSelected, email: email, password: password);
+      var user =
+          await authObject.SignUpMethod(email: email, password: password);
 
       return right(UserModel.fromFirebaseUser(user));
     } catch (e) {
-      return left(Failure(errMessage: e.toString()));
+      final errorMessage = e.toString().replaceFirst('Exception: ', '');
+      return left(Failure(errMessage: errorMessage));
     }
   }
 
   @override
-  Future<Either<Failure, UserEntity>> forgetPassword({required String email}) {
-    // TODO: implement forgetPassword
-
-    throw UnimplementedError();
+  Future<Either<Failure, void>> forgetPassword({required String email}) async {
+    try {
+      var user = await authObject.ForgetPasswordMethod(email: email);
+      return right(user);
+    } catch (e) {
+      return left(Failure(errMessage: e.toString()));
+    }
   }
 
   @override

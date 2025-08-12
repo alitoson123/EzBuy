@@ -1,12 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce_app/Core/Models/UserModel.dart';
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/widgets/complete_sign_up_text_field.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
 import 'package:e_commerce_app/constant.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,12 +16,12 @@ class CompleteSignUpView extends StatefulWidget {
 
 class _CompleteSignUpViewState extends State<CompleteSignUpView> {
   final GlobalKey<FormState> myKey = GlobalKey();
-
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
     return Form(
       key: myKey,
-      autovalidateMode: AutovalidateMode.always,
+      autovalidateMode: autovalidateMode,
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -45,33 +42,22 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
                       'Complete your details or continue \n with social media',
                 ), // shift alt a
                 SizedBox(height: 30),
-              CompleteSignUpTextField(),
-                MyelevatedButton(onPressed: () {
-                  if (myKey.currentState!.validate()) {
-                    myKey.currentState!.save();
-                    Message().MessageSuccessMethod(context,
-                        message: 'Sign up successfully.');
+                CompleteSignUpTextField(),
+                MyelevatedButton(
+                  onPressed: () {
+                    if (myKey.currentState!.validate()) {
+                      myKey.currentState!.save();
+                      Message().MessageSuccessMethod(context,
+                          message: 'Sign up successfully.');
 
-                    Future<void> addUser(UserModel userModel) async {
-                      final firestore = FirebaseFirestore.instance;
-                      final uid = FirebaseAuth.instance.currentUser!.uid;
-                      userModel.userId = uid;
-
-                      final data = {
-                        "First Name": userModel.Fname,
-                        "Last Name": userModel.Lname,
-                        "Phone Number": userModel.PhoneNumber,
-                        "Address": userModel.Address,
-                        "ID": userModel.userId,
-                      };
-
-                      await firestore.collection('users').doc(uid).set(data);
-                      print("User added with ID: ${uid}");
+                      GoRouter.of(context).push(Navigate.KHomePage);
+                    } else {
+                      setState(() {
+                        autovalidateMode = AutovalidateMode.always;
+                      });
                     }
-
-                    GoRouter.of(context).push(Navigate.KHomePage);
-                  }
-                }),
+                  },
+                ),
                 SizedBox(
                   height: 20,
                 ),

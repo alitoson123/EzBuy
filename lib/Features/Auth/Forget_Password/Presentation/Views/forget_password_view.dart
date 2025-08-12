@@ -1,80 +1,59 @@
-import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
-import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
-import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/row_of_dont_have_an_account_and_sign_up.dart';
-import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
-import 'package:e_commerce_app/Features/Auth/Sign_up/Data/Models/sign_up_model.dart';
-import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
+import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
+import 'package:e_commerce_app/Core/messages/message.dart';
+import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
+import 'package:e_commerce_app/Features/Auth/Forget_Password/Presentation/Views/Widgets/forget_password_view_body.dart';
+import 'package:e_commerce_app/Features/Auth/Forget_Password/Presentation/view_model/Forget_password_cubit/forget_password_cubit.dart';
+import 'package:e_commerce_app/Features/Auth/Forget_Password/Presentation/view_model/Forget_password_cubit/forget_password_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-
-class ForgetPasswordView extends StatefulWidget {
+class ForgetPasswordView extends StatelessWidget {
   const ForgetPasswordView({super.key});
 
   @override
-  State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
-}
-
-class _ForgetPasswordViewState extends State<ForgetPasswordView> {
-  String? email;
-  final GlobalKey<FormState> myKey = GlobalKey();
-
-  @override
   Widget build(BuildContext context) {
-    return Form(
-      key: myKey,
-      autovalidateMode: AutovalidateMode.always,
+    return BlocProvider(
+      create: (context) => ForgetPasswordCubit(
+        getIt<AuthRepoImpl>(),
+      ),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: Opacity(opacity: .5, child: Text('Forgot Password')),
           backgroundColor: Colors.white,
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                TextOfTitleAndSubtitle(
-                    title: 'Forgot Password',
-                    subtitle:
-                        'please enter your email and we will send \n you a link to return to your account'),
-                SizedBox(
-                  height: 70,
-                ),
-                MyTextField(
-                  SignUpModelObject: SignUpModel(
-                    myTextLabel: 'Email',
-                    myHintText: 'Enter your email',
-                    myIcon: Icon(Icons.mail),
-                    onChanged: (value) {
-                      email = value;
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 110,
-                ),
-                MyelevatedButton(
-                  onPressed: () async {
-                    if (myKey.currentState!.validate()) {
-                      myKey.currentState!.save();
-
-                      await Auth().ForgetPasswordMethod(context, email: email!);
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 70,
-                ),
-                RowOfDontHaveAnAccountAndSignUp(),
-              ],
-            ),
-          ),
-        ),
+        body: blocConsumerOfForgetPasswordViewBody(),
       ),
+    );
+  }
+}
+
+class blocConsumerOfForgetPasswordViewBody extends StatelessWidget {
+  const blocConsumerOfForgetPasswordViewBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<ForgetPasswordCubit, ForgetPasswordStates>(
+      listener: (context, state) {
+        if (state is ForgetPasswordSuccessState) {
+          Message().MessageSuccessMethod(context,
+              message:
+                  'Password Reset Email Sent Successfully, please check your email and login with your new password.');
+          GoRouter.of(context).pop();
+        }
+        if (state is ForgetPasswordFailureState) {
+          Message().MessageErrorMethod(context, message: state.errMessage);
+        }
+      },
+      builder: (context, state) {
+        return ModalProgressHUD(
+            inAsyncCall: state is ForgetPasswordLoadingState ? true : false,
+            child: ForgetPasswordViewBody());
+      },
     );
   }
 }
