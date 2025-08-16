@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/Features/Auth/Domain/Entities/user_entity.dart';
-import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/row_of_check_box_and_text_button.dart';
+import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_button_of_forget_password.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/row_of_dont_have_an_account_and_sign_up.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/row_of_social_media_logos.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_fields_of_email_and_password.dart';
@@ -54,14 +54,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               SizedBox(
                 height: 40,
               ),
-             /* RowOfCheckBoxAndTextButton(
-                value: isSelected,
-                onChanged: (thing) {
-                  setState(() {
-                    isSelected = thing!;
-                  });
-                },
-              ),*/
+              TextButtonOfForgetPassword(),
               SizedBox(
                 height: 20,
               ),
@@ -71,10 +64,11 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     myKey.currentState!.save();
 
                     BlocProvider.of<SignInCubit>(context)
-                        .signInWithEmailAndPasswordMethod(context,
-                            email: email!,
-                            password: Password!,
-                );
+                        .signInWithEmailAndPasswordMethod(
+                      context,
+                      email: email!,
+                      password: Password!,
+                    );
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
