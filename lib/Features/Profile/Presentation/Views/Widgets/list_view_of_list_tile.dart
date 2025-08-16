@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
+import 'package:e_commerce_app/Core/Services/Shared_preferences_service/shared_preferences.dart';
 import 'package:e_commerce_app/Features/Profile/Data/Models/ProfileModel.dart';
 import 'package:e_commerce_app/Features/Profile/Presentation/Views/Widgets/list_tile_of_profile.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,11 @@ class ListViewOfListTile extends StatelessWidget {
       },
     ),
     Profilemodel(
-        title: 'My Account', leadingIcon: Icons.person, onTap: (context) {}),
+        title: 'My Account',
+        leadingIcon: Icons.person,
+        onTap: (context) async {
+          await SharedPreferencesService.removeAuthData();
+        }),
     Profilemodel(
         title: 'My Account', leadingIcon: Icons.person, onTap: (context) {}),
     Profilemodel(

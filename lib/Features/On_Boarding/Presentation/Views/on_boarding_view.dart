@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/goToNextPageWithCheckLoginStatus.dart';
-import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
+import 'package:e_commerce_app/Core/widgets/myElevated_button.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myListGenerate.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/onBboardingBody.dart';
 import 'package:flutter/material.dart';

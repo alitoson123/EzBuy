@@ -5,7 +5,7 @@ import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_fields_of_email_and_password.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/view_model/sign_in_cubit/sign_in_cubit.dart';
-import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
+import 'package:e_commerce_app/Core/widgets/myElevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +22,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
   UserEntity? userEntityObject;
   String? email;
   String? Password;
-  bool isSelected = false;
   GlobalKey<FormState> myKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
@@ -55,14 +54,14 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               SizedBox(
                 height: 40,
               ),
-              RowOfCheckBoxAndTextButton(
+             /* RowOfCheckBoxAndTextButton(
                 value: isSelected,
                 onChanged: (thing) {
                   setState(() {
                     isSelected = thing!;
                   });
                 },
-              ),
+              ),*/
               SizedBox(
                 height: 20,
               ),
@@ -75,7 +74,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         .signInWithEmailAndPasswordMethod(context,
                             email: email!,
                             password: Password!,
-                            isSelected: isSelected);
+                );
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;

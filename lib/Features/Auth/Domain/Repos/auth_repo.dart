@@ -7,18 +7,16 @@ abstract class AuthRepo {
     context, {
     required String email,
     required String password,
-    required bool isSelected,
   });
 
   Future<Either<Failure, UserEntity>> signup(
     context, {
     required String email,
     required String password,
-    required bool isSelected,
   });
   Future<Either<Failure, void>> forgetPassword({
     required String email,
   });
   Future<Either<Failure, UserEntity>> signInWithGoogle();
- Future<Either<Failure, UserEntity>> signInWithFacebook();
+  Future<Either<Failure, UserEntity>> signInWithFacebook();
 }

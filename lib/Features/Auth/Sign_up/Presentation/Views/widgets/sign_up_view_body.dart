@@ -4,7 +4,7 @@ import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Data/Models/sign_up_model.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/view_model/Sign_up_cubit/sign_up_cubit.dart';
-import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
+import 'package:e_commerce_app/Core/widgets/myElevated_button.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,10 +67,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 onPressed: () async {
                   if (myKey.currentState!.validate()) {
                     myKey.currentState!.save();
-                  await  BlocProvider.of<SignUpCubit>(context).signUpMethod(context,
-                        email: email!,
-                        password: Password!,
-                        isSelected: true);
+                    await BlocProvider.of<SignUpCubit>(context).signUpMethod(
+                      context,
+                      email: email!,
+                      password: Password!,
+                    );
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;

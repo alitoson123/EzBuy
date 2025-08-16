@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
-import 'package:e_commerce_app/Core/Services/Bloc_observes/my_Bloc_observe.dart';
+import 'package:e_commerce_app/Core/Services/Bloc_observes_service/my_Bloc_observe.dart';
 import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
 import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/view_model/sign_in_cubit/sign_in_cubit.dart';

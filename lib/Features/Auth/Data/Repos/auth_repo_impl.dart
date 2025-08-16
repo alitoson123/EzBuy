@@ -7,7 +7,6 @@ import 'package:e_commerce_app/Features/Auth/Domain/Repos/auth_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepo {
-  
   final Auth authObject;
 
   AuthRepoImpl({required this.authObject});
@@ -16,13 +15,11 @@ class AuthRepoImpl extends AuthRepo {
     context, {
     required String email,
     required String password,
-    required bool isSelected,
   }) async {
     try {
       final user = await authObject.signInWithEmailAndPasswordAndIsLoginCheck(
         email: email,
         password: password,
-        isSelected: isSelected,
       );
       return right(UserModel.fromFirebaseUser(user));
     } catch (e) {
@@ -32,10 +29,11 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signup(context,
-      {required String email,
-      required String password,
-      required bool isSelected}) async {
+  Future<Either<Failure, UserEntity>> signup(
+    context, {
+    required String email,
+    required String password,
+  }) async {
     try {
       var user =
           await authObject.SignUpMethod(email: email, password: password);

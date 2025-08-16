@@ -11,7 +11,6 @@ class SignInCubit extends Cubit<SignInStates> {
   BuildContext context, {
   required String email,
   required String password,
-  required bool isSelected,
 }) async {
   emit(SignInInitialState());
 
@@ -19,7 +18,6 @@ class SignInCubit extends Cubit<SignInStates> {
     context,
     email: email,
     password: password,
-    isSelected: isSelected,
   );
 
   user.fold(

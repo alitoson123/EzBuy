@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
+import 'package:e_commerce_app/Core/Services/Shared_preferences_service/shared_preferences.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/sign_in_view_body.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/view_model/sign_in_cubit/sign_in_cubit.dart';
@@ -36,7 +37,7 @@ class BloconsumerOfSignInBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInStates>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is SignInErrorState) {
           Message().MessageErrorMethod(context, message: state.errMessage);
         }
@@ -45,6 +46,7 @@ class BloconsumerOfSignInBody extends StatelessWidget {
             context,
             message: 'Sign in successfully',
           );
+          await SharedPreferencesService.setVlaue(value: true);
 
           GoRouter.of(context).go(Navigate.KHomePage);
         }

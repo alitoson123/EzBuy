@@ -10,11 +10,11 @@ class SignUpCubit extends Cubit<SignUpStates> {
     context, {
     required String email,
     required String password,
-    required bool isSelected,
+
   }) async {
     emit(SignUpInitialState());
     var result = await authRepoObject.signup(context,
-        email: email, password: password, isSelected: isSelected);
+        email: email, password: password, );
 
     result.fold(
       (failure) => emit(SignUpFailureState(errMessage: failure.errMessage)),

@@ -3,7 +3,7 @@ import 'package:e_commerce_app/Features/Auth/Forget_Password/Presentation/view_m
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/row_of_dont_have_an_account_and_sign_up.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Data/Models/sign_up_model.dart';
-import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
+import 'package:e_commerce_app/Core/widgets/myElevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

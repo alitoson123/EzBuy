@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
-import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/Widgets/myElevated_button.dart';
+import 'package:e_commerce_app/Core/widgets/myElevated_button.dart';
 
 class MyAccount extends StatefulWidget {
   const MyAccount({super.key});

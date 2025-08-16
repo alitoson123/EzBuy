@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 
 class Navigate {
   static String KinitialPage = '/';
-  static String KOnBoardingPage = '/';
+  static String KOnBoardingPage = '/OnBoarding';
   static String KSignInPage = '/SignInPage';
   static String KForgetPasswordPage = '/ForgetPassword';
   static String KSignUpPage = '/SignUp';
