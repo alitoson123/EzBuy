@@ -23,8 +23,9 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      addUser(user: UserModel.fromFirebaseUser(user));
-      return right(UserModel.fromFirebaseUser(user));
+      var userEntity = await getUser();
+
+      return right(userEntity);
     } catch (e) {
       final errorMessage = e.toString().replaceFirst('Exception: ', '');
       return left(Failure(errMessage: errorMessage));
@@ -39,9 +40,10 @@ class AuthRepoImpl extends AuthRepo {
     try {
       var user =
           await authObject.SignUpMethod(email: email, password: password);
-      addUser(user: UserModel.fromFirebaseUser(user));
+      var userEntity = await UserModel.fromFirebaseAddUser(user);
+      addUser(user: userEntity, data: userEntity.toMap());
 
-      return right(UserModel.fromFirebaseUser(user));
+      return right(UserModel.fromFirebaseAddUser(user));
     } catch (e) {
       final errorMessage = e.toString().replaceFirst('Exception: ', '');
       return left(Failure(errMessage: errorMessage));
@@ -63,9 +65,10 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final user = await authObject.signInWithFacebook();
 
-      addUser(user: UserModel.fromFirebaseUser(user));
+      var userEntity = await UserModel.fromFirebaseAddUser2(user);
+      addUser(user: userEntity, data: userEntity.toMap2());
 
-      return right(UserModel.fromFirebaseUser(user));
+      return right(UserModel.fromFirebaseAddUser(user));
     } on FirebaseAuthException catch (e) {
       return left(Failure(errMessage: e.message.toString()));
     }
@@ -76,19 +79,21 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final user = await authObject.signInWithGoogle();
 
-      addUser(user: UserModel.fromFirebaseUser(user));
+      var userEntity = await UserModel.fromFirebaseAddUser2(user);
+      addUser(user: userEntity, data: userEntity.toMap2());
 
-      return right(UserModel.fromFirebaseUser(user));
+      return right(UserModel.fromFirebaseAddUser(user));
     } on FirebaseAuthException catch (e) {
       return left(Failure(errMessage: e.message.toString()));
     }
   }
 
   @override
-  Future<void> addUser({required UserEntity user}) async {
+  Future<void> addUser(
+      {required UserEntity user, required Map<String, dynamic> data}) async {
     await arudUserObject.addUser(
         documentName: "users",
-        data: user.toMap(),
+        data: data,
         useruid: FirebaseAuth.instance.currentUser!.uid);
   }
 
@@ -97,5 +102,12 @@ class AuthRepoImpl extends AuthRepo {
         documentName: "users",
         data: user.toMap(),
         useruid: FirebaseAuth.instance.currentUser!.uid);
+  }
+
+  @override
+  Future<UserEntity> getUser() async {
+    var user = await arudUserObject.getUser(
+        documentName: "users", useruid: FirebaseAuth.instance.currentUser!.uid);
+    return UserModel.fromFirebaseGetUser(user);
   }
 }

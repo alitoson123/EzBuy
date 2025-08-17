@@ -3,7 +3,6 @@ import 'package:e_commerce_app/Core/Services/Shared_preferences_service/shared_p
 import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
-import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/widgets/sign_up_view_body.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/view_model/Sign_up_cubit/sign_up_cubit.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/view_model/Sign_up_cubit/sign_up_states.dart';

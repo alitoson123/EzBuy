@@ -5,11 +5,20 @@ class ArudUser {
       {required String documentName,
       required Map<String, dynamic> data,
       required String useruid}) async {
-    var users =
-        FirebaseFirestore.instance.collection(documentName).doc(useruid);
-    users.set(
+    var user = FirebaseFirestore.instance.collection(documentName).doc(useruid);
+    user.set(
       data,
       SetOptions(merge: true),
     );
+  }
+
+  Future<Map<String, dynamic>> getUser(
+      {required String documentName, required String useruid}) async {
+    var user = await FirebaseFirestore.instance
+        .collection(documentName)
+        .doc(useruid)
+        .get();
+
+    return user.data() as Map<String, dynamic>;
   }
 }
