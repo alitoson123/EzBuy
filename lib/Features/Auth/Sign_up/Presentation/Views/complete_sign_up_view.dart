@@ -1,9 +1,15 @@
+import 'package:e_commerce_app/Core/Models/data_model.dart';
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
+import 'package:e_commerce_app/Core/Services/ARUD_user/ARUD_user.dart';
+import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
+import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
+import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/widgets/complete_sign_up_text_field.dart';
 import 'package:e_commerce_app/Core/widgets/myElevated_button.dart';
 import 'package:e_commerce_app/constant.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +23,8 @@ class CompleteSignUpView extends StatefulWidget {
 class _CompleteSignUpViewState extends State<CompleteSignUpView> {
   final GlobalKey<FormState> myKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  final DataModel DataModelObject =
+      DataModel(Fname: '', Lname: '', PhoneNumber: 0, Address: '');
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -42,13 +50,20 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
                       'Complete your details or continue \n with social media',
                 ), // shift alt a
                 SizedBox(height: 30),
-                CompleteSignUpTextField(),
+                CompleteSignUpTextField(
+                  dataModelobject: DataModelObject,
+                ),
                 MyelevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (myKey.currentState!.validate()) {
                       myKey.currentState!.save();
                       Message().MessageSuccessMethod(context,
                           message: 'Sign up successfully.');
+
+                      await AuthRepoImpl(
+                        arudUserObject: ArudUser(),
+                        authObject: Auth(),
+                      ).addUser2(user: DataModelObject);
 
                       GoRouter.of(context).push(Navigate.KHomePage);
                     } else {

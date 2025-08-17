@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 class CompleteSignUpTextField extends StatefulWidget {
   const CompleteSignUpTextField({
-    super.key,
+    super.key, required this.dataModelobject,
   });
+    final DataModel dataModelobject;
+
 
   @override
   State<CompleteSignUpTextField> createState() =>
@@ -14,14 +16,12 @@ class CompleteSignUpTextField extends StatefulWidget {
 }
 
 class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
-  late DataModel userModelObject;
   late List<SignUpModel> SignUpModelList;
 
   @override
   void initState() {
     super.initState();
-    userModelObject = DataModel(
-        Fname: '', Lname: '', PhoneNumber: 0, Address: '', userId: '');
+   
     SignUpModelList = [
       SignUpModel(
         keyboardType: TextInputType.name,
@@ -29,7 +29,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         myHintText: 'Enter your first name',
         myIcon: Icon(Icons.person),
         onChanged: (value) {
-          userModelObject.Fname = value;
+          widget.dataModelobject.Fname = value;
         },
       ),
       SignUpModel(
@@ -38,7 +38,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         myHintText: 'Enter your last name',
         myIcon: Icon(Icons.person),
         onChanged: (value) {
-          userModelObject.Lname = value;
+          widget.dataModelobject.Lname = value;
         },
       ),
       SignUpModel(
@@ -47,7 +47,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         myHintText: 'Enter your phone number',
         myIcon: Icon(Icons.mobile_friendly),
         onChanged: (value) {
-          userModelObject.PhoneNumber = int.parse(value);
+          widget.dataModelobject.PhoneNumber = int.parse(value);
         },
       ),
       SignUpModel(
@@ -56,7 +56,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         myHintText: 'Enter your address',
         myIcon: Icon(Icons.location_on_outlined),
         onChanged: (value) {
-          userModelObject.Address = value;
+          widget.dataModelobject.Address = value;
         },
       )
     ];

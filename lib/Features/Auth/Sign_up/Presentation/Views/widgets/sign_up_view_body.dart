@@ -68,7 +68,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   if (myKey.currentState!.validate()) {
                     myKey.currentState!.save();
                     await BlocProvider.of<SignUpCubit>(context).signUpMethod(
-                      context,
                       email: email!,
                       password: Password!,
                     );

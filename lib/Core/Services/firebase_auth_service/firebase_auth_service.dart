@@ -1,9 +1,11 @@
+import 'package:e_commerce_app/Core/Services/ARUD_user/ARUD_user.dart';
+import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
+import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth {
-
   Future<User> signInWithEmailAndPasswordAndIsLoginCheck({
     required String email,
     required String password,
@@ -14,7 +16,10 @@ class Auth {
         password: password.trim(),
       );
 
-
+      await AuthRepoImpl(
+        arudUserObject: ArudUser(),
+        authObject: Auth(),
+      ).addUser(user: UserModel.fromFirebaseUser(credential.user!));
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
@@ -36,8 +41,6 @@ class Auth {
     }
   }
 
-
-
   Future<User> SignUpMethod({
     required String email,
     required String password,
@@ -48,6 +51,7 @@ class Auth {
         email: email.trim(),
         password: password.trim(),
       );
+
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {

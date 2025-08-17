@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
+import 'package:e_commerce_app/Core/Services/Shared_preferences_service/shared_preferences.dart';
 import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
+import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/widgets/sign_up_view_body.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/view_model/Sign_up_cubit/sign_up_cubit.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/view_model/Sign_up_cubit/sign_up_states.dart';
@@ -24,8 +26,7 @@ class _SignUpViewState extends State<SignUpView> {
       create: (context) => SignUpCubit(
         getIt<AuthRepoImpl>(),
       ),
-      child: Scaffold(appBar: myAppbar(), 
-      body: BlocConsumerOfSignUpViewBody()),
+      child: Scaffold(appBar: myAppbar(), body: BlocConsumerOfSignUpViewBody()),
     );
   }
 
@@ -46,13 +47,17 @@ class BlocConsumerOfSignUpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCubit, SignUpStates>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is SignUpFailureState) {
           Message().MessageErrorMethod(context, message: state.errMessage);
         }
         if (state is SignUpSuccessState) {
-          Message()
-              .MessageSuccessMethod(context, message: 'Please complete your profile.');
+          Message().MessageSuccessMethod(context,
+              message: 'Please complete your profile.');
+
+          await SharedPreferencesService.setVlaue(value: true);
+   
+
           GoRouter.of(context).push(Navigate.KCompleteSignUpPage);
         }
       },

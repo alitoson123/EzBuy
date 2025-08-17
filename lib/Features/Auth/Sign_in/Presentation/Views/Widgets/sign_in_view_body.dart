@@ -52,11 +52,11 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 },
               ),
               SizedBox(
-                height: 40,
+                height: 15,
               ),
               TextButtonOfForgetPassword(),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
               MyelevatedButton(
                 onPressed: () async {
@@ -65,7 +65,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
 
                     BlocProvider.of<SignInCubit>(context)
                         .signInWithEmailAndPasswordMethod(
-                      context,
+                          
                       email: email!,
                       password: Password!,
                     );

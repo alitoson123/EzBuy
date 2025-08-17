@@ -1,6 +1,5 @@
 import 'package:e_commerce_app/Features/Auth/Domain/Repos/auth_repo.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/view_model/sign_in_cubit/sign_in_states.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInCubit extends Cubit<SignInStates> {
@@ -8,14 +7,13 @@ class SignInCubit extends Cubit<SignInStates> {
 
   final AuthRepo authRepoObject;
   Future<void> signInWithEmailAndPasswordMethod(
-  BuildContext context, {
+      {
   required String email,
   required String password,
 }) async {
   emit(SignInInitialState());
 
   final user = await authRepoObject.signInWithEmailAndPassword(
-    context,
     email: email,
     password: password,
   );
