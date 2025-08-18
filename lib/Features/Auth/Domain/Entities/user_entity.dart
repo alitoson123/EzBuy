@@ -2,24 +2,34 @@ class UserEntity {
   String? Fname;
   String? Lname;
   int? phoneNumber;
-  String? address; 
-  final String email;
-  final String useruid;
+  String? address;
+  String? email;
+  String? useruid;
 
-  UserEntity({required this.email, required this.useruid, this.Fname, this.Lname, this.phoneNumber, this.address});
+  UserEntity(
+      {this.email,
+      this.useruid,
+      this.Fname,
+      this.Lname,
+      this.phoneNumber,
+      this.address});
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMapOfSignUp() => {
         'email': email,
         'useruid': useruid,
       };
-
-  Map<String, dynamic> toMap2() => {
+  Map<String, dynamic> toMapOfCompSignUp() => {
         'Fname': Fname,
         'Lname': Lname,
         'PhoneNumber': phoneNumber,
         'Address': address,
+      };
+  Map<String, dynamic> toMapOfSignInWithGoogleAnFacebook() => {
         'email': email,
         'useruid': useruid,
+        'Fname': Fname,
+        'Lname': Lname,
+        'PhoneNumber': phoneNumber,
+        'Address': address,
       };
-      
 }

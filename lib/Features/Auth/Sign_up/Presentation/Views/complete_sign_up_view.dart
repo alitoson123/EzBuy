@@ -1,9 +1,9 @@
-import 'package:e_commerce_app/Core/Models/data_model.dart';
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
 import 'package:e_commerce_app/Core/Services/ARUD_user/ARUD_user.dart';
 import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
+import 'package:e_commerce_app/Features/Auth/Domain/Entities/user_entity.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/widgets/complete_sign_up_text_field.dart';
 import 'package:e_commerce_app/Core/widgets/myElevated_button.dart';
@@ -21,8 +21,13 @@ class CompleteSignUpView extends StatefulWidget {
 class _CompleteSignUpViewState extends State<CompleteSignUpView> {
   final GlobalKey<FormState> myKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  final DataModel DataModelObject =
-      DataModel(Fname: '', Lname: '', PhoneNumber: 0, Address: '');
+  final UserEntity userEntityObject = UserEntity(
+      email: '',
+      useruid: '',
+      Fname: '',
+      Lname: '',
+      phoneNumber: 0,
+      address: '');
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -49,7 +54,7 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
                 ), // shift alt a
                 SizedBox(height: 30),
                 CompleteSignUpTextField(
-                  dataModelobject: DataModelObject,
+                  userEntityObject: userEntityObject,
                 ),
                 MyelevatedButton(
                   onPressed: () async {
@@ -61,7 +66,9 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
                       await AuthRepoImpl(
                         arudUserObject: ArudUser(),
                         authObject: Auth(),
-                      ).addUser2(user: DataModelObject);
+                      ).addUser(
+                          data: userEntityObject,
+                          MapOfData: userEntityObject.toMapOfCompSignUp());
 
                       GoRouter.of(context).push(Navigate.KHomePage);
                     } else {

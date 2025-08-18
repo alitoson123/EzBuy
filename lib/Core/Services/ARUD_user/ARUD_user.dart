@@ -4,8 +4,8 @@ class ArudUser {
   Future<void> addUser(
       {required String documentName,
       required Map<String, dynamic> data,
-      required String useruid}) async {
-    var user = FirebaseFirestore.instance.collection(documentName).doc(useruid);
+      required String userUid}) async {
+    var user = FirebaseFirestore.instance.collection(documentName).doc(userUid);
     user.set(
       data,
       SetOptions(merge: true),

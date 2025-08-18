@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce_app/Core/Errors/failure.dart';
-import 'package:e_commerce_app/Core/Models/data_model.dart';
 import 'package:e_commerce_app/Core/Services/ARUD_user/ARUD_user.dart';
 import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
@@ -41,7 +40,7 @@ class AuthRepoImpl extends AuthRepo {
       var user =
           await authObject.SignUpMethod(email: email, password: password);
       var userEntity = await UserModel.fromFirebaseAddUser(user);
-      addUser(user: userEntity, data: userEntity.toMap());
+      addUser(data: userEntity, MapOfData: userEntity.toMapOfSignUp());
 
       return right(UserModel.fromFirebaseAddUser(user));
     } catch (e) {
@@ -66,7 +65,9 @@ class AuthRepoImpl extends AuthRepo {
       final user = await authObject.signInWithFacebook();
 
       var userEntity = await UserModel.fromFirebaseAddUser2(user);
-      addUser(user: userEntity, data: userEntity.toMap2());
+      addUser(
+          data: userEntity,
+          MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
 
       return right(UserModel.fromFirebaseAddUser(user));
     } on FirebaseAuthException catch (e) {
@@ -80,7 +81,9 @@ class AuthRepoImpl extends AuthRepo {
       final user = await authObject.signInWithGoogle();
 
       var userEntity = await UserModel.fromFirebaseAddUser2(user);
-      addUser(user: userEntity, data: userEntity.toMap2());
+      addUser(
+          data: userEntity,
+          MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
 
       return right(UserModel.fromFirebaseAddUser(user));
     } on FirebaseAuthException catch (e) {
@@ -90,18 +93,12 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<void> addUser(
-      {required UserEntity user, required Map<String, dynamic> data}) async {
+      {required UserEntity data,
+      required Map<String, dynamic> MapOfData}) async {
     await arudUserObject.addUser(
         documentName: "users",
-        data: data,
-        useruid: FirebaseAuth.instance.currentUser!.uid);
-  }
-
-  Future<void> addUser2({required DataModel user}) async {
-    await arudUserObject.addUser(
-        documentName: "users",
-        data: user.toMap(),
-        useruid: FirebaseAuth.instance.currentUser!.uid);
+        data: MapOfData,
+        userUid: FirebaseAuth.instance.currentUser!.uid);
   }
 
   @override
