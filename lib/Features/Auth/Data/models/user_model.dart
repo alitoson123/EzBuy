@@ -75,15 +75,6 @@ class UserModel extends UserEntity with HiveObjectMixin {
         imageUrl: user['imageUrl'],
       );
 
-  factory UserModel.fromUserEntityToUserModel(UserEntity user) => UserModel(
-        email: user.email,
-        useruid: user.useruid,
-        Fname: user.Fname,
-        Lname: user.Lname,
-        phoneNumber: user.phoneNumber,
-        address: user.address,
-        imageUrl: user.imageUrl,
-      );
 
   Map<String, dynamic> toMapOfSignUp() => {
         'email': email,
