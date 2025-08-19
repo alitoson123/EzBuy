@@ -5,6 +5,7 @@ class UserEntity {
   String? address;
   String? email;
   String? useruid;
+  String? imageUrl;
 
   UserEntity(
       {this.email,
@@ -12,7 +13,9 @@ class UserEntity {
       this.Fname,
       this.Lname,
       this.phoneNumber,
-      this.address});
+      this.address,
+      this.imageUrl
+      });
 
   Map<String, dynamic> toMapOfSignUp() => {
         'email': email,
@@ -23,6 +26,7 @@ class UserEntity {
         'Lname': Lname,
         'PhoneNumber': phoneNumber,
         'Address': address,
+        'imageUrl': imageUrl,
       };
   Map<String, dynamic> toMapOfSignInWithGoogleAnFacebook() => {
         'email': email,
@@ -31,5 +35,6 @@ class UserEntity {
         'Lname': Lname,
         'PhoneNumber': phoneNumber,
         'Address': address,
+        'imageUrl': imageUrl,
       };
 }

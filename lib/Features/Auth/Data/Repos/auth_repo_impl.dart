@@ -39,10 +39,10 @@ class AuthRepoImpl extends AuthRepo {
     try {
       var user =
           await authObject.SignUpMethod(email: email, password: password);
-      var userEntity = await UserModel.fromFirebaseAddUser(user);
+      var userEntity = await UserModel.fromFirebaseAddUserOfSignUp(user);
       addUser(data: userEntity, MapOfData: userEntity.toMapOfSignUp());
 
-      return right(UserModel.fromFirebaseAddUser(user));
+      return right(UserModel.fromFirebaseAddUserOfSignUp(user));
     } catch (e) {
       final errorMessage = e.toString().replaceFirst('Exception: ', '');
       return left(Failure(errMessage: errorMessage));
@@ -64,12 +64,13 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final user = await authObject.signInWithFacebook();
 
-      var userEntity = await UserModel.fromFirebaseAddUser2(user);
+      var userEntity = await UserModel
+          .fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(user);
       addUser(
           data: userEntity,
           MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
 
-      return right(UserModel.fromFirebaseAddUser(user));
+      return right(UserModel.fromFirebaseAddUserOfSignUp(user));
     } on FirebaseAuthException catch (e) {
       return left(Failure(errMessage: e.message.toString()));
     }
@@ -80,12 +81,21 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final user = await authObject.signInWithGoogle();
 
-      var userEntity = await UserModel.fromFirebaseAddUser2(user);
-      addUser(
-          data: userEntity,
-          MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
+      var userEntity = await UserModel
+          .fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(user);
 
-      return right(UserModel.fromFirebaseAddUser(user));
+      bool isTrue =
+          await CheckIsUserAddDataBefore(useruid: userEntity.useruid!);
+
+      if (isTrue) {
+        getUser();
+      } else {
+        addUser(
+            data: userEntity,
+            MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
+      }
+
+      return right(UserModel.fromFirebaseAddUserOfSignUp(user));
     } on FirebaseAuthException catch (e) {
       return left(Failure(errMessage: e.message.toString()));
     }
@@ -106,5 +116,16 @@ class AuthRepoImpl extends AuthRepo {
     var user = await arudUserObject.getUser(
         documentName: "users", useruid: FirebaseAuth.instance.currentUser!.uid);
     return UserModel.fromFirebaseGetUser(user);
+  }
+
+  @override
+  Future<void> deleteUser({required String useruid}) async {
+    await arudUserObject.deleteUser(documentName: "users", useruid: useruid);
+  }
+
+  @override
+  Future<bool> CheckIsUserAddDataBefore({required String useruid}) {
+    return arudUserObject.CheckIsUserAddDataBefore(
+        documentName: "users", useruid: useruid);
   }
 }

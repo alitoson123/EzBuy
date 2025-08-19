@@ -1,23 +1,28 @@
 import 'package:e_commerce_app/Features/Auth/Domain/Entities/user_entity.dart';
 
 class UserModel extends UserEntity {
-  UserModel(
-      {super.email,
-      super.useruid,
-      super.Fname,
-      super.Lname,
-      super.phoneNumber,
-      super.address});
+  UserModel({
+    super.email,
+    super.useruid,
+    super.Fname,
+    super.Lname,
+    super.phoneNumber,
+    super.address,
+    super.imageUrl,
+  });
 
-  factory UserModel.fromFirebaseAddUser(user) => UserModel(
+  factory UserModel.fromFirebaseAddUserOfSignUp(user) => UserModel(
         email: user.email.toString(),
         useruid: user.uid.toString(),
       );
-  factory UserModel.fromFirebaseAddUser2(user) => UserModel(
+  factory UserModel.fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(
+          user) =>
+      UserModel(
         email: user.email.toString(),
         useruid: user.uid.toString(),
         Fname: user.displayName.toString(),
         phoneNumber: user.phoneNumber,
+        imageUrl: user.photoURL.toString(),
       );
 
   factory UserModel.fromFirebaseGetUser(user) => UserModel(
@@ -27,5 +32,6 @@ class UserModel extends UserEntity {
         Lname: user['Lname'],
         phoneNumber: user['PhoneNumber'],
         address: user['Address'],
+        imageUrl: user['imageUrl'],
       );
 }

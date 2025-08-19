@@ -19,7 +19,9 @@ abstract class AuthRepo {
   Future<Either<Failure, UserEntity>> signInWithFacebook();
 
   Future<void> addUser(
-      {required UserEntity data,
-      required Map<String, dynamic> MapOfData});
+      {required UserEntity data, required Map<String, dynamic> MapOfData});
   Future<UserEntity> getUser();
+  Future<void> deleteUser({required String useruid});
+
+  Future<bool> CheckIsUserAddDataBefore({required String useruid});
 }
