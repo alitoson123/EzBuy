@@ -1,13 +1,13 @@
 import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
-import 'package:e_commerce_app/Features/Auth/Domain/Entities/user_entity.dart';
+import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Data/Models/sign_up_model.dart';
 import 'package:flutter/material.dart';
 
 class CompleteSignUpTextField extends StatefulWidget {
   const CompleteSignUpTextField({
-    super.key, required this.userEntityObject,
+    super.key, required this.userModelObject,
   });
-    final UserEntity userEntityObject;
+  final UserModel userModelObject;
 
 
   @override
@@ -29,7 +29,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         myHintText: 'Enter your first name',
         myIcon: Icon(Icons.person),
         onChanged: (value) {
-          widget.userEntityObject.Fname = value;
+          widget.userModelObject.Fname = value;
         },
       ),
       SignUpModel(
@@ -38,7 +38,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         myHintText: 'Enter your last name',
         myIcon: Icon(Icons.person),
         onChanged: (value) {
-          widget.userEntityObject.Lname = value;
+          widget.userModelObject.Lname = value;
         },
       ),
       SignUpModel(
@@ -47,7 +47,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         myHintText: 'Enter your phone number',
         myIcon: Icon(Icons.mobile_friendly),
         onChanged: (value) {
-          widget.userEntityObject.phoneNumber = int.parse(value);
+          widget.userModelObject.phoneNumber = int.parse(value);
         },
       ),
       SignUpModel(
@@ -56,7 +56,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
         myHintText: 'Enter your address',
         myIcon: Icon(Icons.location_on_outlined),
         onChanged: (value) {
-          widget.userEntityObject.address = value;
+          widget.userModelObject.address = value;
         },
       )
     ];

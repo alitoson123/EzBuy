@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce_app/Core/Errors/failure.dart';
 import 'package:e_commerce_app/Core/Services/ARUD_user/ARUD_user.dart';
+import 'package:e_commerce_app/Core/Services/Local_service/local_service_with_hive.dart';
 import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
+
 import 'package:e_commerce_app/Features/Auth/Domain/Entities/user_entity.dart';
 import 'package:e_commerce_app/Features/Auth/Domain/Repos/auth_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,9 +24,11 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      var userEntity = await getUser();
+      var userData = await getUser();
 
-      return right(userEntity);
+      await LocalServiceWithHive().saveUser(userData);
+
+      return right(userData);
     } catch (e) {
       final errorMessage = e.toString().replaceFirst('Exception: ', '');
       return left(Failure(errMessage: errorMessage));
@@ -66,10 +70,17 @@ class AuthRepoImpl extends AuthRepo {
 
       var userEntity = await UserModel
           .fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(user);
-      addUser(
-          data: userEntity,
-          MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
 
+      bool isTrue =
+          await CheckIsUserAddDataBefore(useruid: userEntity.useruid!);
+
+      if (isTrue) {
+        getUser();
+      } else {
+        addUser(
+            data: userEntity,
+            MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
+      }
       return right(UserModel.fromFirebaseAddUserOfSignUp(user));
     } on FirebaseAuthException catch (e) {
       return left(Failure(errMessage: e.message.toString()));
@@ -112,7 +123,7 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<UserEntity> getUser() async {
+  Future<UserModel> getUser() async {
     var user = await arudUserObject.getUser(
         documentName: "users", useruid: FirebaseAuth.instance.currentUser!.uid);
     return UserModel.fromFirebaseGetUser(user);

@@ -3,7 +3,7 @@ import 'package:e_commerce_app/Core/Services/ARUD_user/ARUD_user.dart';
 import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
-import 'package:e_commerce_app/Features/Auth/Domain/Entities/user_entity.dart';
+import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_of_title_and_subtitle.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/widgets/complete_sign_up_text_field.dart';
 import 'package:e_commerce_app/Core/widgets/myElevated_button.dart';
@@ -21,7 +21,7 @@ class CompleteSignUpView extends StatefulWidget {
 class _CompleteSignUpViewState extends State<CompleteSignUpView> {
   final GlobalKey<FormState> myKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  final UserEntity userEntityObject = UserEntity(
+  final UserModel userModelObject = UserModel(
       email: '',
       useruid: '',
       Fname: '',
@@ -54,7 +54,7 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
                 ), // shift alt a
                 SizedBox(height: 30),
                 CompleteSignUpTextField(
-                  userEntityObject: userEntityObject,
+                  userModelObject: userModelObject,
                 ),
                 MyelevatedButton(
                   onPressed: () async {
@@ -67,8 +67,8 @@ class _CompleteSignUpViewState extends State<CompleteSignUpView> {
                         arudUserObject: ArudUser(),
                         authObject: Auth(),
                       ).addUser(
-                          data: userEntityObject,
-                          MapOfData: userEntityObject.toMapOfCompSignUp());
+                          data: userModelObject,
+                          MapOfData: userModelObject.toMapOfCompSignUp());
 
                       GoRouter.of(context).push(Navigate.KHomePage);
                     } else {

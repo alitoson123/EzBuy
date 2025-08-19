@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce_app/Core/Errors/failure.dart';
+import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
 import 'package:e_commerce_app/Features/Auth/Domain/Entities/user_entity.dart';
 
 abstract class AuthRepo {
@@ -20,7 +21,7 @@ abstract class AuthRepo {
 
   Future<void> addUser(
       {required UserEntity data, required Map<String, dynamic> MapOfData});
-  Future<UserEntity> getUser();
+  Future<UserModel> getUser();
   Future<void> deleteUser({required String useruid});
 
   Future<bool> CheckIsUserAddDataBefore({required String useruid});

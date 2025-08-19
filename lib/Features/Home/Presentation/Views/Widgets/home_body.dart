@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Core/Services/Local_service/local_service_with_hive.dart';
 import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/app_bar_for_home.dart';
 import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/container_offer.dart';
 import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/list_view_of_categories.dart';
@@ -21,7 +22,7 @@ class HomeBody extends StatelessWidget {
             ContainerOffer(),
             SizedBox(height: 20),
             Text(
-              'Category',
+              LocalServiceWithHive().getUser()?.Fname ?? 'Unknown',
               style: Style().textStyle20,
             ),
             ListViewOfCategories(),

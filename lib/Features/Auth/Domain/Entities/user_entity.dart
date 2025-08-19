@@ -17,24 +17,5 @@ class UserEntity {
       this.imageUrl
       });
 
-  Map<String, dynamic> toMapOfSignUp() => {
-        'email': email,
-        'useruid': useruid,
-      };
-  Map<String, dynamic> toMapOfCompSignUp() => {
-        'Fname': Fname,
-        'Lname': Lname,
-        'PhoneNumber': phoneNumber,
-        'Address': address,
-        'imageUrl': imageUrl,
-      };
-  Map<String, dynamic> toMapOfSignInWithGoogleAnFacebook() => {
-        'email': email,
-        'useruid': useruid,
-        'Fname': Fname,
-        'Lname': Lname,
-        'PhoneNumber': phoneNumber,
-        'Address': address,
-        'imageUrl': imageUrl,
-      };
+
 }

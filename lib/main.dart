@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +19,12 @@ void main() async {
   );
   setup();
   Bloc.observer = MyBlocObserver();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserModelAdapter());
+
+  await Hive.openBox<UserModel>('userBox');
+
   runApp(const EzBuy());
 }
 
