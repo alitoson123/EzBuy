@@ -4,7 +4,6 @@ import 'package:e_commerce_app/Core/Services/ARUD_user/ARUD_user.dart';
 import 'package:e_commerce_app/Core/Services/Local_service/local_service_with_hive.dart';
 import 'package:e_commerce_app/Core/Services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:e_commerce_app/Features/Auth/Data/models/user_model.dart';
-
 import 'package:e_commerce_app/Features/Auth/Domain/Entities/user_entity.dart';
 import 'package:e_commerce_app/Features/Auth/Domain/Repos/auth_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,9 +23,8 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      var userData = await getUser();
-
-      await LocalServiceWithHive().saveUser(userData);
+      var userData = await getUser(); // Step 2
+      await LocalServiceWithHive().saveUser(userData); // Step 3
 
       return right(userData);
     } catch (e) {
@@ -44,7 +42,7 @@ class AuthRepoImpl extends AuthRepo {
       var user =
           await authObject.SignUpMethod(email: email, password: password);
       var userEntity = await UserModel.fromFirebaseAddUserOfSignUp(user);
-      addUser(data: userEntity, MapOfData: userEntity.toMapOfSignUp());
+      addUser(data: userEntity, MapOfData: userEntity.toMapOfSignUp()); // Step 1
 
       return right(UserModel.fromFirebaseAddUserOfSignUp(user));
     } catch (e) {
@@ -75,11 +73,18 @@ class AuthRepoImpl extends AuthRepo {
           await CheckIsUserAddDataBefore(useruid: userEntity.useruid!);
 
       if (isTrue) {
-        getUser();
+        var userData = await getUser();  // Step 2
+
+        await LocalServiceWithHive().saveUser(userData);  // Step 3
+
       } else {
-        addUser(
+        await addUser(  // Step 1
             data: userEntity,
             MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
+
+        var userData = await getUser();  // Step 2
+
+        await LocalServiceWithHive().saveUser(userData);  // Step 3
       }
       return right(UserModel.fromFirebaseAddUserOfSignUp(user));
     } on FirebaseAuthException catch (e) {
@@ -99,11 +104,18 @@ class AuthRepoImpl extends AuthRepo {
           await CheckIsUserAddDataBefore(useruid: userEntity.useruid!);
 
       if (isTrue) {
-        getUser();
+        var userData = await getUser();  // Step 2
+
+        await LocalServiceWithHive().saveUser(userData);  // Step 3
+
       } else {
-        addUser(
+        await addUser(  // Step 1
             data: userEntity,
             MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
+
+        var userData = await getUser();  // Step 2
+
+        await LocalServiceWithHive().saveUser(userData);  // Step 3
       }
 
       return right(UserModel.fromFirebaseAddUserOfSignUp(user));

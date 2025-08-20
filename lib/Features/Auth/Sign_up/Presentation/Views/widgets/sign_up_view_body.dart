@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Core/messages/message.dart';
 import 'package:e_commerce_app/Core/widgets/my_text_field.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/row_of_social_media_logos.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/Widgets/text_fields_of_email_and_password.dart';
@@ -67,10 +68,15 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 onPressed: () async {
                   if (myKey.currentState!.validate()) {
                     myKey.currentState!.save();
-                    await BlocProvider.of<SignUpCubit>(context).signUpMethod(
-                      email: email!,
-                      password: Password!,
-                    );
+                    if (Password == confirmPassword) {
+                      await BlocProvider.of<SignUpCubit>(context).signUpMethod(
+                        email: email!,
+                        password: Password!,
+                      );
+                    } else {
+                      Message().MessageErrorMethod(context,
+                          message: 'Password does not match');
+                    }
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
