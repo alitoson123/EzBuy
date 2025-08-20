@@ -65,7 +65,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
 
                     BlocProvider.of<SignInCubit>(context)
                         .signInWithEmailAndPasswordMethod(
-                          
                       email: email!,
                       password: Password!,
                     );

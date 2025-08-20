@@ -4,7 +4,6 @@ const Color KPrimaryColor = Color(0xff1E88E5);
 const String KUserBox = 'userBox';
 const String currentUser = 'currentUser';
 
-
 class Style {
   TextStyle textStyle14 = TextStyle(fontSize: 14);
 

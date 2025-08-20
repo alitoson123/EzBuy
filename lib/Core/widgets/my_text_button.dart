@@ -2,9 +2,10 @@ import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 
 class MyTextButton extends StatelessWidget {
-  const MyTextButton({super.key, required this.myText, required this.onPressed});
+  const MyTextButton(
+      {super.key, required this.myText, required this.onPressed});
   final String myText;
-  final  void Function() onPressed;
+  final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return TextButton(

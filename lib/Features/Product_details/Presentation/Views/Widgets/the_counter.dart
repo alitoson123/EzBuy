@@ -18,12 +18,9 @@ class TheCounter extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          
-
           CircleAvatar(
             radius: 20,
-            backgroundColor:
-                const Color.fromARGB(101, 158, 158, 158),
+            backgroundColor: const Color.fromARGB(101, 158, 158, 158),
             child: Icon(
               Icons.remove,
               size: 28,
@@ -33,8 +30,9 @@ class TheCounter extends StatelessWidget {
           SizedBox(width: 5),
           Text(
             '1',
-            style: Style().textStyle20.copyWith(
-                color: Colors.black, fontWeight: FontWeight.bold),
+            style: Style()
+                .textStyle20
+                .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           SizedBox(width: 5),
           CircleAvatar(

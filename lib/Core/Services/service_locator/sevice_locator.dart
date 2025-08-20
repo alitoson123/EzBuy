@@ -9,6 +9,4 @@ void setup() {
   getIt.registerSingleton<AuthRepoImpl>(
     AuthRepoImpl(authObject: Auth(), arudUserObject: ArudUser()),
   );
-
-
 }

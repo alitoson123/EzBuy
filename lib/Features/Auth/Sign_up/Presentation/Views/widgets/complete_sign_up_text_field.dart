@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 class CompleteSignUpTextField extends StatefulWidget {
   const CompleteSignUpTextField({
-    super.key, required this.userModelObject,
+    super.key,
+    required this.userModelObject,
   });
   final UserModel userModelObject;
-
 
   @override
   State<CompleteSignUpTextField> createState() =>
@@ -21,7 +21,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
   @override
   void initState() {
     super.initState();
-   
+
     SignUpModelList = [
       SignUpModel(
         keyboardType: TextInputType.name,
@@ -62,6 +62,7 @@ class _CompleteSignUpTextFieldState extends State<CompleteSignUpTextField> {
     ];
   }
 
+  @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,

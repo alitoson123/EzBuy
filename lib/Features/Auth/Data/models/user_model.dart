@@ -56,7 +56,8 @@ class UserModel extends UserEntity with HiveObjectMixin {
         useruid: user.uid.toString(),
       );
 
-  factory UserModel.fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(user) =>
+  factory UserModel.fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(
+          user) =>
       UserModel(
         email: user.email.toString(),
         useruid: user.uid.toString(),
@@ -74,7 +75,6 @@ class UserModel extends UserEntity with HiveObjectMixin {
         address: user['Address'],
         imageUrl: user['imageUrl'],
       );
-
 
   Map<String, dynamic> toMapOfSignUp() => {
         'email': email,

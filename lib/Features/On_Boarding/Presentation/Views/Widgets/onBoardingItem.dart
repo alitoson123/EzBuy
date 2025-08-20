@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Onboardingitem extends StatelessWidget {
-  const Onboardingitem(
-      {super.key, required this.onboardingModel,});
+  const Onboardingitem({
+    super.key,
+    required this.onboardingModel,
+  });
   final OnboardingModel onboardingModel;
   @override
   Widget build(BuildContext context) {

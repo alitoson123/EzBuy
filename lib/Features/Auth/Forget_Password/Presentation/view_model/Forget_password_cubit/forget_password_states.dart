@@ -1,4 +1,3 @@
-
 class ForgetPasswordStates {}
 
 class ForgetPasswordInitialState extends ForgetPasswordStates {}
@@ -11,5 +10,4 @@ class ForgetPasswordFailureState extends ForgetPasswordStates {
   final String errMessage;
 
   ForgetPasswordFailureState({required this.errMessage});
-
 }

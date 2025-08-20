@@ -24,7 +24,7 @@ class Navigate {
 
   final GoRouter goRouter = GoRouter(
     routes: [
-        GoRoute(
+      GoRoute(
         path: KinitialPage,
         builder: (context, state) => SplashView(),
       ),

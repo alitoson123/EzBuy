@@ -5,7 +5,8 @@ class SocialMedialLogo extends StatelessWidget {
       {super.key,
       required this.image,
       required this.myWidth,
-      required this.myheight, required this.onTap});
+      required this.myheight,
+      required this.onTap});
   final String image;
   final double myWidth;
   final double myheight;

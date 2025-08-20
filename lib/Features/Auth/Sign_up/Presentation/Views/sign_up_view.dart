@@ -55,7 +55,6 @@ class BlocConsumerOfSignUpViewBody extends StatelessWidget {
               message: 'Please complete your profile.');
 
           await SharedPreferencesService.setVlaue(value: true);
-   
 
           GoRouter.of(context).push(Navigate.KCompleteSignUpPage);
         }

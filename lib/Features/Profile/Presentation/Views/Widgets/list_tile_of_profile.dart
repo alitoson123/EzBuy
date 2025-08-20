@@ -3,8 +3,10 @@ import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 
 class ListTileOfProfile extends StatelessWidget {
-  const ListTileOfProfile(
-      {super.key, required this.profilemodelObject,});
+  const ListTileOfProfile({
+    super.key,
+    required this.profilemodelObject,
+  });
   final Profilemodel profilemodelObject;
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,8 @@ class SignUpModel {
   void Function(String)? onChanged;
   final TextInputType? keyboardType;
 
-  SignUpModel({this.keyboardType,
+  SignUpModel(
+      {this.keyboardType,
       required this.myTextLabel,
       required this.myHintText,
       required this.myIcon,

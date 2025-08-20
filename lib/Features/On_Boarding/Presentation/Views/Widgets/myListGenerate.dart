@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Mylistgenerate extends StatelessWidget {
   const Mylistgenerate({super.key, required this.currentIndex});
-final int currentIndex;
+  final int currentIndex;
   @override
   Widget build(BuildContext context) {
     return Row(

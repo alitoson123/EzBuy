@@ -14,8 +14,5 @@ class UserEntity {
       this.Lname,
       this.phoneNumber,
       this.address,
-      this.imageUrl
-      });
-
-
+      this.imageUrl});
 }

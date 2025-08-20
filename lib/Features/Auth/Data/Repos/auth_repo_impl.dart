@@ -41,8 +41,9 @@ class AuthRepoImpl extends AuthRepo {
     try {
       var user =
           await authObject.SignUpMethod(email: email, password: password);
-      var userEntity = await UserModel.fromFirebaseAddUserOfSignUp(user);
-      addUser(data: userEntity, MapOfData: userEntity.toMapOfSignUp()); // Step 1
+      var userEntity = UserModel.fromFirebaseAddUserOfSignUp(user);
+      addUser(
+          data: userEntity, MapOfData: userEntity.toMapOfSignUp()); // Step 1
 
       return right(UserModel.fromFirebaseAddUserOfSignUp(user));
     } catch (e) {
@@ -66,25 +67,25 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final user = await authObject.signInWithFacebook();
 
-      var userEntity = await UserModel
+      var userEntity = UserModel
           .fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(user);
 
       bool isTrue =
           await CheckIsUserAddDataBefore(useruid: userEntity.useruid!);
 
       if (isTrue) {
-        var userData = await getUser();  // Step 2
+        var userData = await getUser(); // Step 2
 
-        await LocalServiceWithHive().saveUser(userData);  // Step 3
-
+        await LocalServiceWithHive().saveUser(userData); // Step 3
       } else {
-        await addUser(  // Step 1
+        await addUser(
+            // Step 1
             data: userEntity,
             MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
 
-        var userData = await getUser();  // Step 2
+        var userData = await getUser(); // Step 2
 
-        await LocalServiceWithHive().saveUser(userData);  // Step 3
+        await LocalServiceWithHive().saveUser(userData); // Step 3
       }
       return right(UserModel.fromFirebaseAddUserOfSignUp(user));
     } on FirebaseAuthException catch (e) {
@@ -97,25 +98,25 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final user = await authObject.signInWithGoogle();
 
-      var userEntity = await UserModel
+      var userEntity = UserModel
           .fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(user);
 
       bool isTrue =
           await CheckIsUserAddDataBefore(useruid: userEntity.useruid!);
 
       if (isTrue) {
-        var userData = await getUser();  // Step 2
+        var userData = await getUser(); // Step 2
 
-        await LocalServiceWithHive().saveUser(userData);  // Step 3
-
+        await LocalServiceWithHive().saveUser(userData); // Step 3
       } else {
-        await addUser(  // Step 1
+        await addUser(
+            // Step 1
             data: userEntity,
             MapOfData: userEntity.toMapOfSignInWithGoogleAnFacebook());
 
-        var userData = await getUser();  // Step 2
+        var userData = await getUser(); // Step 2
 
-        await LocalServiceWithHive().saveUser(userData);  // Step 3
+        await LocalServiceWithHive().saveUser(userData); // Step 3
       }
 
       return right(UserModel.fromFirebaseAddUserOfSignUp(user));

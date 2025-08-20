@@ -17,8 +17,7 @@ class _OnbboardingbodyState extends State<Onbboardingbody> {
         description: 'Find amazing products at great prices \n all in one app.',
         image: 'assets/images/Online Groceries-cuate (1).svg'),
     OnboardingModel(
-        description:
-            'Your orders arrive fast, safe, and always on time.',
+        description: 'Your orders arrive fast, safe, and always on time.',
         image: 'assets/images/In no time-pana (1).svg'),
     OnboardingModel(
         description:
