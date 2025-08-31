@@ -2,7 +2,7 @@ import 'package:e_commerce_app/Features/Auth/Forget_Password/Presentation/Views/
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/sign_in_view.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/complete_sign_up_view.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/sign_up_view.dart';
-import 'package:e_commerce_app/Features/Home/Presentation/Views/home_view.dart';
+import 'package:e_commerce_app/Features/Main/Presentation/Views/main_view.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/on_boarding_view.dart';
 import 'package:e_commerce_app/Features/Product_details/Presentation/Views/product_details_view.dart';
 import 'package:e_commerce_app/Features/Profile/Presentation/Views/profile_view.dart';
@@ -50,7 +50,7 @@ class Navigate {
       ),
       GoRoute(
         path: KHomePage,
-        builder: (context, state) => HomeView(),
+        builder: (context, state) => MainView(),
       ),
       GoRoute(
         path: KProductDetailsPage,

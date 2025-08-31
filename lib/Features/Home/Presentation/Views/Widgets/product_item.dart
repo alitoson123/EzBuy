@@ -1,10 +1,13 @@
 import 'package:e_commerce_app/Core/Navigate/navigate.dart';
+import 'package:e_commerce_app/Features/Home/Domain/Entities/product_enitity.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  const ProductItem({super.key, required this.product});
+
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +24,8 @@ class ProductItem extends StatelessWidget {
               color: Color(0xffECECEC),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Image.asset(
-              'assets/images/download-removebg-preview.png',
+            child: Image.network(
+              product.imageUrl ?? 'assets/images/download-removebg-preview.png',
             ),
           ),
           SizedBox(height: 5),
@@ -34,7 +37,7 @@ class ProductItem extends StatelessWidget {
                 Opacity(
                   opacity: .6,
                   child: Text(
-                    'MacBook Air',
+                    product.name,
                     style:
                         Style().textStyle20.copyWith(color: Color(0xff343F4A)),
                   ),
@@ -43,7 +46,7 @@ class ProductItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '\$9999.9',
+                      '\$${product.price}',
                       style: Style().textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Color(0xff343F4A)),

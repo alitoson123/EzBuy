@@ -67,8 +67,9 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final user = await authObject.signInWithFacebook();
 
-      var userEntity = UserModel
-          .fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(user);
+      var userEntity =
+          UserModel.fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(
+              user);
 
       bool isTrue =
           await CheckIsUserAddDataBefore(useruid: userEntity.useruid!);
@@ -98,8 +99,9 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final user = await authObject.signInWithGoogle();
 
-      var userEntity = UserModel
-          .fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(user);
+      var userEntity =
+          UserModel.fromFirebaseAddUserOfCompSignUpAnSignInWithGoogleAnFace(
+              user);
 
       bool isTrue =
           await CheckIsUserAddDataBefore(useruid: userEntity.useruid!);
