@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
+import 'package:e_commerce_app/Features/Cart/Presentation/Views/cart_view.dart';
 import 'package:e_commerce_app/Features/Home/Domain/product_repo/product_repo.dart';
 import 'package:e_commerce_app/Features/Home/Presentation/View_model/Product_cubit/product_cubit.dart';
 import 'package:e_commerce_app/Features/Home/Presentation/Views/Widgets/home_body.dart';
@@ -17,7 +18,7 @@ class _MainViewState extends State<MainView> {
   int selectedIndex = 0;
   List<Widget> screens = [
     HomeBody(),
-    Center(child: Text('Explore')),
+    CartView(),
     Center(child: Text('Settings')),
     ProfileView(),
   ];
@@ -38,7 +39,7 @@ class _MainViewState extends State<MainView> {
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.explore), label: 'Explore'),
+                icon: Icon(Icons.shopping_cart), label: 'Cart'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings_rounded), label: 'Settings'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),

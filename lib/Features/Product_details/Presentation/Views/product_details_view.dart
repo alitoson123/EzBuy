@@ -17,7 +17,12 @@ class ProductDetailsView extends StatelessWidget {
           children: [
             ContainerOfProductImage(),
             ContainerOfProductDetails(),
-            Container(color: Colors.white, child: TheFooter()),
+            Container(
+                color: Colors.white,
+                child: TheFooter(
+               
+                ),
+                ),
           ],
         ),
       ),

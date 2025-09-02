@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/Features/Product_details/Presentation/Views/Widgets/my_elevated_button_of_product.dart';
-import 'package:e_commerce_app/Features/Product_details/Presentation/Views/Widgets/the_counter.dart';
+import 'package:e_commerce_app/Features/Product_details/Presentation/Views/Widgets/the_counter_of_details_view.dart';
 import 'package:flutter/material.dart';
 
 class TheFooter extends StatelessWidget {
@@ -20,7 +20,7 @@ class TheFooter extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [TheCounter(), MyElevatedButtonOfProduct()],
+        children: [TheCounterOfDetailsView(), MyElevatedButtonOfProduct(text: 'Add to Cart', minimumSize: Size(290, 47),)],
       ),
     );
   }
