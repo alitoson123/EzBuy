@@ -14,7 +14,7 @@ class ProductModel extends ProductEntity {
   @override
   final String category;
   @override
-  final bool isFavotite;
+  bool isFavotite;
   @override
   final File? image;
   @override

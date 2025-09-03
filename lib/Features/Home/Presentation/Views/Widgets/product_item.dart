@@ -13,7 +13,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Navigate.KProductDetailsPage);
+        GoRouter.of(context).push(Navigate.KProductDetailsPage, extra: product);
       },
       child: Column(
         children: [

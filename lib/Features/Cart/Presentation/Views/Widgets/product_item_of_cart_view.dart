@@ -1,9 +1,15 @@
+import 'package:e_commerce_app/Features/Cart/Domain/Entities/cart_item_entity.dart';
 import 'package:e_commerce_app/Features/Cart/Presentation/Views/Widgets/the_counter_of_cart_view.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 
 class ProductItemOfCartView extends StatelessWidget {
-  const ProductItemOfCartView({super.key});
+  const ProductItemOfCartView({
+    super.key,
+    required this.cartItemEntity,
+  });
+
+  final CartItemEntity cartItemEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +24,9 @@ class ProductItemOfCartView extends StatelessWidget {
               color: Color(0xffECECEC),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Image.asset(
-              'assets/images/download-removebg-preview.png',
+            child: Image.network(
+              cartItemEntity.productEntity.imageUrl ??
+                  'assets/images/download-removebg-preview.png',
             ),
           ),
           SizedBox(width: 10),
@@ -31,7 +38,7 @@ class ProductItemOfCartView extends StatelessWidget {
                 Opacity(
                   opacity: .6,
                   child: Text(
-                    'MacBook Air',
+                    cartItemEntity.productEntity.name,
                     style:
                         Style().textStyle20.copyWith(color: Color(0xff343F4A)),
                   ),
@@ -40,13 +47,15 @@ class ProductItemOfCartView extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '\$9999.9',
+                      '\$${cartItemEntity.productEntity.price}',
                       style: Style().textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Color(0xff343F4A)),
                     ),
                     SizedBox(width: 85),
-                    TheCounterOfCartView(),
+                    TheCounterOfCartView(
+                      cartItemEntity: cartItemEntity,
+                    ),
                   ],
                 ),
               ],

@@ -9,7 +9,7 @@ class ProductEntity {
   final String code;
   final String description;
   final String category;
-  final bool isFavotite;
+  bool isFavotite;
   final File? image;
   String? imageUrl;
 

@@ -3,6 +3,7 @@ import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/sign_in_
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/complete_sign_up_view.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/sign_up_view.dart';
 import 'package:e_commerce_app/Features/Cart/Presentation/Views/cart_view.dart';
+import 'package:e_commerce_app/Features/Home/Data/Models/product_model.dart';
 import 'package:e_commerce_app/Features/Main/Presentation/Views/main_view.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/on_boarding_view.dart';
 import 'package:e_commerce_app/Features/Product_details/Presentation/Views/product_details_view.dart';
@@ -55,9 +56,12 @@ class Navigate {
         builder: (context, state) => MainView(),
       ),
       GoRoute(
-        path: KProductDetailsPage,
-        builder: (context, state) => ProductDetailsView(),
-      ),
+          path: KProductDetailsPage,
+          builder: (context, state) {
+            final product =
+                state.extra as ProductModel; // 👈 cast to your Product model
+            return ProductDetailsView(product: product);
+          }),
       GoRoute(
         path: KProfilePage,
         builder: (context, state) => ProfileView(),

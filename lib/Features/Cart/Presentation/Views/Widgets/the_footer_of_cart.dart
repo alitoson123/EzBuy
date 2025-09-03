@@ -1,5 +1,7 @@
+import 'package:e_commerce_app/Features/Cart/Presentation/View_model/cart_item_cubit.dart/cart_item_cubit.dart';
 import 'package:e_commerce_app/Features/Product_details/Presentation/Views/Widgets/my_elevated_button_of_product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TheFooterOfCart extends StatelessWidget {
   const TheFooterOfCart({super.key});
@@ -20,7 +22,9 @@ class TheFooterOfCart extends StatelessWidget {
         children: [
           //Text('Total: \$1200', style: Style().textStyle18),
           MyElevatedButtonOfProduct(
-            text: 'Checkout   Total: \$1200',
+            onPressed: () {},
+            text:
+                'Checkout   Total: \$ ${context.watch<CartItemCubit>().cartListEntity.totalCost}',
             minimumSize: Size(200, 54),
           )
         ],

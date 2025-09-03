@@ -1,11 +1,19 @@
+import 'package:e_commerce_app/Features/Cart/Domain/Entities/cart_item_entity.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 
-class TheCounterOfCartView extends StatelessWidget {
+class TheCounterOfCartView extends StatefulWidget {
   const TheCounterOfCartView({
     super.key,
+    required this.cartItemEntity,
   });
+  final CartItemEntity cartItemEntity;
 
+  @override
+  State<TheCounterOfCartView> createState() => _TheCounterOfCartViewState();
+}
+
+class _TheCounterOfCartViewState extends State<TheCounterOfCartView> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,30 +26,46 @@ class TheCounterOfCartView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 14,
-            backgroundColor: const Color.fromARGB(101, 158, 158, 158),
-            child: Icon(
-              Icons.remove,
-              size: 22,
-              color: Colors.black,
+          GestureDetector(
+            onTap: () {
+              if (widget.cartItemEntity.count > 1) {
+                setState(() {
+                  widget.cartItemEntity.count--;
+                });
+              }
+            },
+            child: CircleAvatar(
+              radius: 14,
+              backgroundColor: const Color.fromARGB(101, 158, 158, 158),
+              child: Icon(
+                Icons.remove,
+                size: 22,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(width: 5),
           Text(
-            '1',
+            widget.cartItemEntity.count.toString(),
             style: Style()
                 .textStyle18
                 .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           SizedBox(width: 5),
-          CircleAvatar(
-            radius: 14,
-            backgroundColor: Colors.black,
-            child: Icon(
-              Icons.add,
-              size: 22,
-              color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                widget.cartItemEntity.count++;
+              });
+            },
+            child: CircleAvatar(
+              radius: 14,
+              backgroundColor: Colors.black,
+              child: Icon(
+                Icons.add,
+                size: 22,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

@@ -6,13 +6,15 @@ class MyElevatedButtonOfProduct extends StatelessWidget {
     super.key,
     required this.text,
     required this.minimumSize,
+    this.onPressed,
   });
   final Size minimumSize;
   final String text;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),

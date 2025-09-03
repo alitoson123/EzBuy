@@ -1,11 +1,19 @@
+import 'package:e_commerce_app/Features/Cart/Domain/Entities/cart_item_entity.dart';
+import 'package:e_commerce_app/Features/Cart/Presentation/View_model/cart_item_cubit.dart/cart_item_cubit.dart';
+import 'package:e_commerce_app/Features/Cart/Presentation/View_model/cart_item_cubit.dart/cart_item_states.dart';
+import 'package:e_commerce_app/Features/Home/Domain/Entities/product_enitity.dart';
 import 'package:e_commerce_app/Features/Product_details/Presentation/Views/Widgets/my_elevated_button_of_product.dart';
 import 'package:e_commerce_app/Features/Product_details/Presentation/Views/Widgets/the_counter_of_details_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TheFooter extends StatelessWidget {
   const TheFooter({
     super.key,
+    required this.product,
   });
+
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +30,23 @@ class TheFooter extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TheCounterOfDetailsView(),
-          MyElevatedButtonOfProduct(
-            text: 'Add to Cart',
-            minimumSize: Size(290, 47),
+          BlocListener<CartItemCubit, CartItemStates>(
+            listener: (context, state) {
+              if (state is CartItemAddedSuccessfully) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Added Successfully')),
+                );
+              }
+            },
+            child: MyElevatedButtonOfProduct(
+              onPressed: () {
+                context.read<CartItemCubit>().addProductToCart(
+                    cartItemEntity: CartItemEntity(productEntity: product),
+                    myProductEntity: product);
+              },
+              text: 'Add to Cart',
+              minimumSize: Size(290, 47),
+            ),
           )
         ],
       ),

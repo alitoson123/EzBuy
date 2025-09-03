@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class ContainerOfProductImage extends StatelessWidget {
   const ContainerOfProductImage({
     super.key,
+    required this.productImage,
   });
-
+  final String productImage;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +15,7 @@ class ContainerOfProductImage extends StatelessWidget {
         color: Color(0xffEDEFF1),
         // borderRadius: BorderRadius.circular(15),
       ),
-      child: Image.asset('assets/images/download-removebg-preview.png'),
+      child: Image.network(productImage),
     );
   }
 }
