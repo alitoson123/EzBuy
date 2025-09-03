@@ -38,7 +38,6 @@ class ProductItemOfCartView extends StatelessWidget {
                 ),
                 SizedBox(height: 5),
                 Row(
-                  // mainAxisAlignment: MainAxisAlignment.,
                   children: [
                     Text(
                       '\$9999.9',

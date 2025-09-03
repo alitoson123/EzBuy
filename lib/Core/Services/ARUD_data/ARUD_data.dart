@@ -20,7 +20,6 @@ class ArudData {
     return data.docs.map((e) => ProductModel.fromJson(e.data())).toList();
   }
 
-
   /*Future<void> deleteUser(
       {required String documentName, required String useruid}) async {
     await FirebaseFirestore.instance

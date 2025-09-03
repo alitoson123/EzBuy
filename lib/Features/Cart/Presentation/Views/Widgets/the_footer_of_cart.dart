@@ -1,18 +1,15 @@
 import 'package:e_commerce_app/Features/Product_details/Presentation/Views/Widgets/my_elevated_button_of_product.dart';
-import 'package:e_commerce_app/Features/Product_details/Presentation/Views/Widgets/the_counter_of_details_view.dart';
 import 'package:flutter/material.dart';
 
-class TheFooter extends StatelessWidget {
-  const TheFooter({
-    super.key,
-  });
+class TheFooterOfCart extends StatelessWidget {
+  const TheFooterOfCart({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 103,
       decoration: BoxDecoration(
-        color: Color(0xffEDEFF1),
+        color: Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
@@ -21,10 +18,10 @@ class TheFooter extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          TheCounterOfDetailsView(),
+          //Text('Total: \$1200', style: Style().textStyle18),
           MyElevatedButtonOfProduct(
-            text: 'Add to Cart',
-            minimumSize: Size(290, 47),
+            text: 'Checkout   Total: \$1200',
+            minimumSize: Size(200, 54),
           )
         ],
       ),

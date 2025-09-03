@@ -25,7 +25,7 @@ class Navigate {
   static String KCartPage = '/Cart';
 
   final GoRouter goRouter = GoRouter(
-   routes: [
+    routes: [
       GoRoute(
         path: KinitialPage,
         builder: (context, state) => SplashView(),
@@ -66,7 +66,7 @@ class Navigate {
         path: KMyAccountPage,
         builder: (context, state) => MyAccount(),
       ),
-       GoRoute(
+      GoRoute(
         path: KCartPage,
         builder: (context, state) => CartView(),
       ),
