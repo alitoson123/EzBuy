@@ -27,7 +27,6 @@ class Navigate {
   static String KCartPage = '/Cart';
   static String KCheckOutPage = '/CheckOut';
 
-
   final GoRouter goRouter = GoRouter(
     routes: [
       GoRoute(
@@ -77,7 +76,7 @@ class Navigate {
         path: KCartPage,
         builder: (context, state) => CartView(),
       ),
-       GoRoute(
+      GoRoute(
         path: KCheckOutPage,
         builder: (context, state) => CheckOutView(),
       ),

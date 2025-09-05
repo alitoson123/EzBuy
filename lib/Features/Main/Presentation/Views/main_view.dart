@@ -21,7 +21,7 @@ class _MainViewState extends State<MainView> {
     CartView(),
     Center(child: Text('Settings')),
     ProfileView(),
-  ];/*
+  ]; /*
  BlocProvider(
       create: (context) => CartItemCubit(
         getIt<CartListEntity>(),
