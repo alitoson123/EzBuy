@@ -3,6 +3,7 @@ import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/Views/sign_in_
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/complete_sign_up_view.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_up/Presentation/Views/sign_up_view.dart';
 import 'package:e_commerce_app/Features/Cart/Presentation/Views/cart_view.dart';
+import 'package:e_commerce_app/Features/Check_out/Presentation/Views/check_out_view.dart';
 import 'package:e_commerce_app/Features/Home/Data/Models/product_model.dart';
 import 'package:e_commerce_app/Features/Main/Presentation/Views/main_view.dart';
 import 'package:e_commerce_app/Features/On_Boarding/Presentation/Views/on_boarding_view.dart';
@@ -24,6 +25,8 @@ class Navigate {
   static String KProfilePage = '/Profile';
   static String KMyAccountPage = '/MyAccount';
   static String KCartPage = '/Cart';
+  static String KCheckOutPage = '/CheckOut';
+
 
   final GoRouter goRouter = GoRouter(
     routes: [
@@ -73,6 +76,10 @@ class Navigate {
       GoRoute(
         path: KCartPage,
         builder: (context, state) => CartView(),
+      ),
+       GoRoute(
+        path: KCheckOutPage,
+        builder: (context, state) => CheckOutView(),
       ),
     ],
   );

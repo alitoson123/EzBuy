@@ -3,6 +3,8 @@ import 'package:e_commerce_app/Core/Services/Bloc_observes_service/my_Bloc_obser
 import 'package:e_commerce_app/Core/Services/service_locator/sevice_locator.dart';
 import 'package:e_commerce_app/Features/Auth/Data/Repos/auth_repo_impl.dart';
 import 'package:e_commerce_app/Features/Auth/Sign_in/Presentation/view_model/sign_in_cubit/sign_in_cubit.dart';
+import 'package:e_commerce_app/Features/Cart/Domain/Entities/cart_list_entity.dart';
+import 'package:e_commerce_app/Features/Cart/Presentation/View_model/cart_item_cubit.dart/cart_item_cubit.dart';
 import 'package:e_commerce_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,10 +34,19 @@ class EzBuy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignInCubit(
-        getIt<AuthRepoImpl>(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CartItemCubit(
+            getIt<CartListEntity>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => SignInCubit(
+            getIt<AuthRepoImpl>(),
+          ),
+        ),
+      ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

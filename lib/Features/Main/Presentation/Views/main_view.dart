@@ -21,7 +21,17 @@ class _MainViewState extends State<MainView> {
     CartView(),
     Center(child: Text('Settings')),
     ProfileView(),
-  ];
+  ];/*
+ BlocProvider(
+      create: (context) => CartItemCubit(
+        getIt<CartListEntity>(),
+      ),
+      child:
+      BlocProvider(
+      create: (context) => ProductCubit(
+        getIt<ProductRepo>(),
+      ),
+  */
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

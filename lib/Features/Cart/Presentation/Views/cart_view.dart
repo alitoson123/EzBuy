@@ -16,25 +16,20 @@ class CartView extends StatefulWidget {
 class _CartViewState extends State<CartView> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CartItemCubit(
-        getIt<CartListEntity>(),
-      ),
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Column(
-            children: [
-              Opacity(opacity: .7, child: Text('Your Cart')),
-              Opacity(
-                opacity: .5,
-                child: NumberOfItems(),
-              ),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Column(
+          children: [
+            Opacity(opacity: .7, child: Text('Your Cart')),
+            Opacity(
+              opacity: .5,
+              child: NumberOfItems(),
+            ),
+          ],
         ),
-        body: CartViewBody(),
       ),
+      body: CartViewBody(),
     );
   }
 }
